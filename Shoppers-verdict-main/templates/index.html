@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopper's Verdict - AI-Powered Shopping Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">🛒</div>
+                Shopper's Verdict
+            </a>
+            <nav>
+                <a href="/features" class="btn btn-secondary">Features</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="fade-in-up">Make Smarter Shopping Decisions</h1>
+            <p class="fade-in-up">AI-powered analysis of product reviews to help you find the perfect purchase. Get instant worth-to-buy scores, pros & cons, and smart recommendations.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Analysis Form -->
+        <div class="card fade-in-up">
+            <div class="card-header">
+                <div class="card-icon">🔍</div>
+                <div>
+                    <h2 class="card-title">Analyze Any Product</h2>
+                    <p style="color: var(--text-secondary); margin: 0;">Paste any Amazon or Flipkart product URL to get instant AI analysis</p>
+                </div>
+            </div>
+
+            <form method="POST" action="/analyze" id="analysisForm">
+                <div class="form-group">
+                    <label for="product_url" class="form-label">Product URL</label>
+                    <input 
+                        type="url" 
+                        id="product_url" 
+                        name="product_url" 
+                        class="form-input" 
+                        placeholder="https://www.amazon.in/product-name/dp/XXXXXXXXXX or https://www.flipkart.com/product-name/p/XXXXXXXXXX"
+                        required
+                    >
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-large btn-full" id="analyzeBtn">
+                    <span class="btn-text">🚀 Get AI Verdict</span>
+                    <div class="loading" style="display: none;">
+                        <div class="spinner"></div>
+                        Analyzing...
+                    </div>
+                </button>
+            </form>
+
+            <!-- Progress Indicator -->
+            <div class="progress-container" id="progressContainer" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p style="text-align: center; margin-top: 0.5rem; color: var(--text-secondary);" id="progressText">
+                    Initializing analysis...
+                </p>
+            </div>
+        </div>
+
+        <!-- Features Preview -->
+        <div class="card fade-in-up">
+            <div class="card-header">
+                <div class="card-icon">✨</div>
+                <div>
+                    <h2 class="card-title">What You'll Get</h2>
+                    <p style="color: var(--text-secondary); margin: 0;">Comprehensive AI analysis in seconds</p>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div class="feature-item">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                        <div style="width: 40px; height: 40px; background: #dcfce7; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">📊</div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Worth-to-Buy Score</h3>
+                    </div>
+                    <p style="color: var(--text-secondary); margin: 0; font-size: 0.9rem;">AI-calculated score (0-100) based on customer sentiment analysis</p>
+                </div>
+
+                <div class="feature-item">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                        <div style="width: 40px; height: 40px; background: #fef3c7; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">⚖️</div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Smart Pros & Cons</h3>
+                    </div>
+                    <p style="color: var(--text-secondary); margin: 0; font-size: 0.9rem;">Automatically extracted strengths and weaknesses from reviews</p>
+                </div>
+
+                <div class="feature-item">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                        <div style="width: 40px; height: 40px; background: #e0e7ff; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">🎯</div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Better Alternatives</h3>
+                    </div>
+                    <p style="color: var(--text-secondary); margin: 0; font-size: 0.9rem;">AI-recommended similar products with higher scores</p>
+                </div>
+
+                <div class="feature-item">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                        <div style="width: 40px; height: 40px; background: #fce7f3; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">🔊</div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Voice Summary</h3>
+                    </div>
+                    <p style="color: var(--text-secondary); margin: 0; font-size: 0.9rem;">Listen to AI-generated verdict summary</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sample Analysis -->
+        <div class="card fade-in-up">
+            <div class="card-header">
+                <div class="card-icon">🎯</div>
+                <div>
+                    <h2 class="card-title">Try Sample Analysis</h2>
+                    <p style="color: var(--text-secondary); margin: 0;">See how our AI analysis works with sample products</p>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <button class="btn btn-secondary sample-btn" data-url="sample-smartphone">
+                    📱 Smartphone Analysis
+                </button>
+                <button class="btn btn-secondary sample-btn" data-url="sample-laptop">
+                    💻 Laptop Analysis
+                </button>
+                <button class="btn btn-secondary sample-btn" data-url="sample-tv">
+                    📺 TV Analysis
+                </button>
+            </div>
+        </div>
+
+        <!-- Supported Sites -->
+        <div class="alert alert-info">
+            <strong>Supported Sites:</strong> Amazon.in, Amazon.com, Flipkart.com
+            <br><small>More e-commerce sites coming soon!</small>
+        </div>
+    </main>
+
+    <script>
+        // Form submission with progress tracking
+        document.getElementById('analysisForm').addEventListener('submit', function(e) {
+            const btn = document.getElementById('analyzeBtn');
+            const btnText = btn.querySelector('.btn-text');
+            const loading = btn.querySelector('.loading');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            
+            // Show loading state
+            btnText.style.display = 'none';
+            loading.style.display = 'flex';
+            btn.disabled = true;
+            progressContainer.style.display = 'block';
+            
+            // Simulate progress
+            let progress = 0;
+            const progressSteps = [
+                { progress: 20, text: 'Validating product URL...' },
+                { progress: 40, text: 'Scraping product reviews...' },
+                { progress: 60, text: 'Analyzing sentiment patterns...' },
+                { progress: 80, text: 'Calculating worth-to-buy score...' },
+                { progress: 95, text: 'Generating recommendations...' }
+            ];
+            
+            let stepIndex = 0;
+            const progressInterval = setInterval(() => {
+                if (stepIndex < progressSteps.length) {
+                    const step = progressSteps[stepIndex];
+                    progressFill.style.width = step.progress + '%';
+                    progressText.textContent = step.text;
+                    stepIndex++;
+                } else {
+                    clearInterval(progressInterval);
+                }
+            }, 1500);
+        });
+
+        // Sample analysis buttons
+        document.querySelectorAll('.sample-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const sampleType = this.dataset.url;
+                const urlInput = document.getElementById('product_url');
+                
+                // Set sample URLs
+                const sampleUrls = {
+                    'sample-smartphone': 'https://www.amazon.in/sample-smartphone/dp/SAMPLE123',
+                    'sample-laptop': 'https://www.flipkart.com/sample-laptop/p/SAMPLE456',
+                    'sample-tv': 'https://www.amazon.in/sample-tv/dp/SAMPLE789'
+                };
+                
+                urlInput.value = sampleUrls[sampleType];
+                urlInput.focus();
+                
+                // Scroll to form
+                document.getElementById('analysisForm').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            });
+        });
+
+        // URL validation
+        document.getElementById('product_url').addEventListener('input', function() {
+            const url = this.value.toLowerCase();
+            const isValid = url.includes('amazon.') || url.includes('flipkart.com') || url.includes('sample');
+            
+            if (url && !isValid) {
+                this.style.borderColor = 'var(--danger-color)';
+                if (!document.querySelector('.url-warning')) {
+                    const warning = document.createElement('div');
+                    warning.className = 'alert alert-warning url-warning';
+                    warning.innerHTML = '<strong>Note:</strong> Currently supports Amazon and Flipkart URLs only.';
+                    this.parentNode.appendChild(warning);
+                }
+            } else {
+                this.style.borderColor = 'var(--border-color)';
+                const warning = document.querySelector('.url-warning');
+                if (warning) warning.remove();
+            }
+        });
+
+        // Add animation delays
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.fade-in-up');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = (index * 0.1) + 's';
+            });
+        });
+    </script>
+</body>
+</html>

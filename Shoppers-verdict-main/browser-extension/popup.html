@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            width: 350px;
+            min-height: 400px;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .header {
+            padding: 15px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .logo {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .score-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .score-value {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .score-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .recommendation {
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .recommended {
+            background: rgba(76, 175, 80, 0.8);
+        }
+        
+        .acceptable {
+            background: rgba(255, 193, 7, 0.8);
+        }
+        
+        .not-recommended {
+            background: rgba(244, 67, 54, 0.8);
+        }
+        
+        .pros-cons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .pros, .cons {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+        }
+        
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .pros .section-title {
+            color: #4CAF50;
+        }
+        
+        .cons .section-title {
+            color: #f44336;
+        }
+        
+        .pros-cons ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .pros-cons li {
+            font-size: 12px;
+            margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .pros li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .cons li:before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #f44336;
+            font-weight: bold;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .error {
+            text-align: center;
+            padding: 20px;
+            color: #f44336;
+        }
+        
+        .error-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .recommendations-section {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+        }
+        
+        .recommendations-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .recommendation-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 8px;
+            font-size: 11px;
+        }
+        
+        .recommendation-title {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .recommendation-price {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .recommendation-score {
+            float: right;
+            background: rgba(76, 175, 80, 0.8);
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+        }
+        
+        .not-product-page {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .not-product-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">🛒 Shopper's Verdict</div>
+        <div class="subtitle">AI Shopping Assistant</div>
+    </div>
+    
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <div>Analyzing product...</div>
+    </div>
+    
+    <div id="notProductPage" class="not-product-page" style="display: none;">
+        <div class="not-product-icon">🛍️</div>
+        <div>Navigate to an Amazon or Flipkart product page to get insights!</div>
+    </div>
+    
+    <div id="content" class="content" style="display: none;">
+        <div class="score-card">
+            <div class="score-value" id="scoreValue">--</div>
+            <div class="score-label">Worth-to-Buy Score</div>
+            <div id="recommendation" class="recommendation"></div>
+        </div>
+        
+        <div class="pros-cons">
+            <div class="pros">
+                <div class="section-title">👍 Pros</div>
+                <ul id="prosList"></ul>
+            </div>
+            <div class="cons">
+                <div class="section-title">👎 Cons</div>
+                <ul id="consList"></ul>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-primary" id="playVerdictBtn">🔊 Play Verdict</button>
+            <button class="btn btn-secondary" id="viewFullBtn">📊 Full Report</button>
+        </div>
+        
+        <div id="recommendationsSection" class="recommendations-section" style="display: none;">
+            <div class="recommendations-title">🎯 Better Alternatives</div>
+            <div id="recommendationsList"></div>
+        </div>
+    </div>
+    
+    <div id="error" class="error" style="display: none;">
+        <div class="error-icon">⚠️</div>
+        <div id="errorMessage">Failed to analyze product</div>
+        <button class="btn btn-primary" id="retryBtn" style="margin-top: 15px;">🔄 Retry</button>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>

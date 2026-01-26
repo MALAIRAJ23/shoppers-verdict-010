@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results - {{ product_title }} | Shopper's Verdict</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">🛒</div>
+                Shopper's Verdict
+            </a>
+            <nav>
+                <a href="/" class="btn btn-secondary">New Analysis</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Product Info -->
+        <div class="card fade-in-up">
+            <div class="card-header">
+                <div class="card-icon">📦</div>
+                <div>
+                    <h1 class="card-title">{{ product_title or 'Product Analysis' }}</h1>
+                    <p style="color: var(--text-secondary); margin: 0;">
+                        <a href="{{ product_url }}" target="_blank" style="color: var(--primary-color); text-decoration: none;">
+                            View Original Product →
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+            {% if is_sample_data %}
+            <div class="alert alert-info">
+                <strong>Demo Analysis:</strong> This is a sample analysis to demonstrate our AI capabilities. 
+                Real product analysis will show actual scraped reviews and data.
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Main Score -->
+        <div class="card fade-in-up">
+            <div class="score-container">
+                <div class="score-circle" id="scoreCircle">
+                    <div class="score-inner">
+                        <div class="score-value" id="scoreValue">{{ score }}</div>
+                        <div class="score-label">Worth Score</div>
+                    </div>
+                </div>
+                
+                <div class="recommendation {{ 'recommended' if score >= 70 else 'acceptable' if score >= 50 else 'not-recommended' }}">
+                    {% if score >= 70 %}
+                        ✅ Highly Recommended
+                    {% elif score >= 50 %}
+                        ⚠️ Acceptable Choice
+                    {% else %}
+                        ❌ Not Recommended
+                    {% endif %}
+                </div>
+                
+                <p style="margin-top: 1rem; color: var(--text-secondary); max-width: 600px; margin-left: auto; margin-right: auto;">
+                    {{ insight }}
+                </p>
+            </div>
+        </div>
+
+        <!-- Pros and Cons -->
+        <div class="card fade-in-up">
+            <div class="card-header">
+                <div class="card-icon">⚖️</div>
+                <h2 class="card-title">Pros & Cons Analysis</h2>
+            </div>
+            
+            <div class="pros-cons">
+                <div class="pros slide-in">
+                    <h3>
+                        <span>✅</span>
+                        What Customers Love
+                    </h3>
+                    <ul>
+                        {% for pro, score in pros %}
+                        <li>
+                            <strong>{{ pro.title() }}:</strong> 
+                            Customers consistently praise this aspect
+                            <small style="color: var(--text-secondary); display: block; margin-top: 0.25rem;">
+                                Sentiment Score: +{{ "%.1f"|format(score * 100) }}%
+                            </small>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="cons slide-in">
+                    <h3>
+                        <span>❌</span>
+                        Common Concerns
+                    </h3>
+                    <ul>
+                        {% for con, score in cons %}
+                        <li>
+                            <strong>{{ con.title() }}:</strong> 
+                            Some customers have concerns about this
+                            <small style="color: var(--text-secondary); display: block; margin-top: 0.25rem;">
+                                Sentiment Score: {{ "%.1f"|format(score * 100) }}%
+                            </small>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Aspect Analysis -->
+        {% if aspect_data %}
+        <div class="card fade-in-up">
+            <div class="card-header">
+                <div class="card-icon">📊</div>
+                <h2 class="card-title">Detailed Aspect Analysis</h2>
+            </div>
+            
+            <div class="aspects">
+                {% for aspect in aspect_data %}
+                <div class="aspect-item slide-in">
+                    <div class="aspect-name">{{ aspect.name.title() }}</div>
+                    <div class="aspect-bar">
+                        <div class="aspect-fill {{ 'positive' if aspect.sentiment > 0 else 'negative' }}" 
+                             style="width: {{ aspect.width }}%"></div>
+                    </div>
+                    <div class="aspect-score">
+                        {{ "%.1f"|format(aspect.sentiment * 100) }}%
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Voice Verdict -->
+        <div class="voice-verdict fade-in-up">
+            <h3>🔊 AI Voice Verdict</h3>
+            <p style="margin-bottom: 1rem; opacity: 0.9;">{{ voice_verdict }}</p>
+            <div class="voice-controls">
+                <button class="play-btn" onclick="playVoiceVerdict()" id="playButton">
+                    <span id="playIcon">▶️</span>
+                </button>
+                <span style="opacity: 0.8;">Click to hear AI summary</span>
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        {% if recommendations %}
+        <div class="card fade-in-up">
+            <div class="card-header">
+                <div class="card-icon">🎯</div>
+                <h2 class="card-title">Better Alternatives</h2>
+            </div>
+            
+            <div class="recommendation-grid">
+                {% for rec in recommendations %}
+                <div class="recommendation-card">
+                    <div class="recommendation-score">{{ rec.score }}/100</div>
+                    <h4 style="margin: 0 0 0.5rem 0;">{{ rec.title }}</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                        {{ rec.description[:100] }}...
+                    </p>
+                    <a href="{{ rec.url }}" target="_blank" class="btn btn-primary" style="font-size: 0.875rem;">
+                        View Product →
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Analysis Metadata -->
+        <div class="card fade-in-up">
+            <div class="card-header">
+                <div class="card-icon">📈</div>
+                <h2 class="card-title">Analysis Details</h2>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                <div style="text-align: center; padding: 1rem; background: var(--light-bg); border-radius: var(--border-radius);">
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--primary-color);">
+                        {{ analysis.meta.reviews_used }}
+                    </div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">Reviews Analyzed</div>
+                </div>
+                
+                <div style="text-align: center; padding: 1rem; background: var(--light-bg); border-radius: var(--border-radius);">
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--secondary-color);">
+                        {{ "%.0f"|format(analysis.meta.confidence * 100) }}%
+                    </div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">Confidence Level</div>
+                </div>
+                
+                <div style="text-align: center; padding: 1rem; background: var(--light-bg); border-radius: var(--border-radius);">
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--warning-color);">
+                        {{ analysis.meta.category.title() }}
+                    </div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">Product Category</div>
+                </div>
+                
+                <div style="text-align: center; padding: 1rem; background: var(--light-bg); border-radius: var(--border-radius);">
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--danger-color);">
+                        {{ "%.0f"|format(analysis.meta.avg_quality * 100) }}%
+                    </div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">Data Quality</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="display: flex; gap: 1rem; justify-content: center; margin: 2rem 0;">
+            <a href="/" class="btn btn-primary btn-large">
+                🔍 Analyze Another Product
+            </a>
+            <button onclick="shareResults()" class="btn btn-secondary btn-large">
+                📤 Share Results
+            </button>
+        </div>
+    </main>
+
+    <script>
+        // Animate score circle on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const scoreValue = {{ score }};
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreElement = document.getElementById('scoreValue');
+            
+            // Animate score counting
+            let currentScore = 0;
+            const increment = scoreValue / 50;
+            const timer = setInterval(() => {
+                currentScore += increment;
+                if (currentScore >= scoreValue) {
+                    currentScore = scoreValue;
+                    clearInterval(timer);
+                }
+                scoreElement.textContent = Math.round(currentScore);
+            }, 30);
+            
+            // Animate aspect bars
+            setTimeout(() => {
+                document.querySelectorAll('.aspect-fill').forEach(fill => {
+                    fill.style.width = fill.style.width;
+                });
+            }, 500);
+        });
+
+        // Voice verdict functionality
+        let isPlaying = false;
+        function playVoiceVerdict() {
+            const button = document.getElementById('playButton');
+            const icon = document.getElementById('playIcon');
+            
+            if (!isPlaying) {
+                // Use Web Speech API if available
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(`{{ voice_verdict }}`);
+                    utterance.rate = 0.9;
+                    utterance.pitch = 1;
+                    
+                    utterance.onstart = () => {
+                        isPlaying = true;
+                        icon.textContent = '⏸️';
+                        button.style.background = 'rgba(255, 255, 255, 0.3)';
+                    };
+                    
+                    utterance.onend = () => {
+                        isPlaying = false;
+                        icon.textContent = '▶️';
+                        button.style.background = 'rgba(255, 255, 255, 0.2)';
+                    };
+                    
+                    speechSynthesis.speak(utterance);
+                } else {
+                    alert('Voice synthesis not supported in this browser');
+                }
+            } else {
+                speechSynthesis.cancel();
+                isPlaying = false;
+                icon.textContent = '▶️';
+                button.style.background = 'rgba(255, 255, 255, 0.2)';
+            }
+        }
+
+        // Share functionality
+        function shareResults() {
+            const shareData = {
+                title: 'Shopper\'s Verdict Analysis',
+                text: `Check out this AI analysis: {{ product_title }} scored {{ score }}/100!`,
+                url: window.location.href
+            };
+            
+            if (navigator.share) {
+                navigator.share(shareData);
+            } else {
+                // Fallback to clipboard
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('Results link copied to clipboard!');
+                });
+            }
+        }
+
+        // Add staggered animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.fade-in-up, .slide-in');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = (index * 0.1) + 's';
+            });
+        });
+    </script>
+</body>
+</html>

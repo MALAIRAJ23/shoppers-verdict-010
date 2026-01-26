@@ -1,0 +1,1138 @@
+{% extends 'base.html' %}
+{% block title %}AI Shopping Labs - Advanced Features{% endblock %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4">🔬 AI Shopping Labs</h1>
+        <p class="lead">Experiment with advanced tools that power Shopper's Verdict.</p>
+    </div>
+    
+    <div class="row g-4">
+        <!-- Card 1: Aspect Explorer -->
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">🔍 Aspect Explorer</h3>
+                    <p class="card-text">Discover what customers talk about and how they feel.</p>
+                    <a href="#" class="btn btn-primary">Launch Explorer</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Price Insight Simulator -->
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">📈 Price Insight Simulator</h3>
+                    <p class="card-text">Track trends, filter ranges, and reveal pricing signals.</p>
+                    <a href="#" class="btn btn-primary">Analyze Prices</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Verdict Composer -->
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">🎯 Smart Verdict Composer</h3>
+                    <p class="card-text">Tune weights and generate a personalized voice verdict.</p>
+                    <a href="#" class="btn btn-primary">Compose Verdict</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Enhanced Features Page Styling */
+.labs-hero { 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.labs-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.labs-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Enhanced Glass Card */
+.glass-card { 
+    position: relative; 
+    border-radius: 20px; 
+    background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(255,255,255,0.8));
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.3); 
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.15),
+                0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    overflow: hidden; 
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+    display: block;
+    text-decoration: none;
+    transform: translateY(0);
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.25),
+                0 1px 0 rgba(255, 255, 255, 0.6) inset;
+    text-decoration: none;
+    color: inherit;
+}
+
+.glass-card:hover::before {
+    opacity: 1;
+}
+
+.glass-card .card-inner { 
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.glass-card h5 {
+    color: #2d3748;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+}
+
+.glass-card p {
+    color: #4a5568;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.glass-card .btn {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover .btn {
+    background: rgba(102, 126, 234, 0.15);
+    border-color: rgba(102, 126, 234, 0.3);
+    transform: translateX(4px);
+}
+
+/* Enhanced Feature Panels */
+.card {
+    border-radius: 16px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.card:not(.d-none) {
+    animation: slideInUp 0.6s ease-out;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-radius: 16px 16px 0 0;
+    padding: 1.25rem 1.5rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    transform: translate(30px, -30px);
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* Form Controls */
+.form-control {
+    border-radius: 12px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    background: white;
+}
+
+/* Button Enhancements */
+.btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #5a6fd8, #6b5b95);
+}
+
+.btn-outline-primary {
+    border-color: #667eea;
+    color: #667eea;
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-color: transparent;
+    transform: translateY(-1px);
+}
+
+.btn-outline-secondary {
+    border-color: #718096;
+    color: #718096;
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-weight: 500;
+}
+
+.btn-outline-secondary:hover {
+    background: #718096;
+    border-color: #718096;
+    color: white;
+}
+
+/* Metrics Styling */
+.metric { 
+    background: linear-gradient(145deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+    border: 1px solid rgba(102, 126, 234, 0.1); 
+    border-radius: 12px; 
+    padding: 1rem 1.25rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.metric::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    transition: width 0.3s ease;
+}
+
+.metric:hover::before {
+    width: 8px;
+}
+
+.metric-label { 
+    font-size: 0.8rem; 
+    color: #718096;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.metric-value { 
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #2d3748;
+    margin-top: 0.25rem;
+}
+
+/* Aspect Chips */
+.aspect-chip { 
+    border-radius: 20px; 
+    padding: 8px 16px; 
+    color: white; 
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer; 
+    user-select: none; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.aspect-chip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.aspect-chip:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.aspect-chip:hover::before {
+    left: 100%;
+}
+
+.aspect-chip:active {
+    transform: translateY(0) scale(1.02);
+}
+
+/* Alert Styling */
+.alert {
+    border-radius: 12px;
+    border: none;
+    padding: 1rem 1.25rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+}
+
+.alert-info {
+    background: linear-gradient(145deg, rgba(66, 153, 225, 0.1), rgba(66, 153, 225, 0.05));
+    color: #2b6cb0;
+    border-left: 4px solid #4299e1;
+}
+
+.alert-success {
+    background: linear-gradient(145deg, rgba(72, 187, 120, 0.1), rgba(72, 187, 120, 0.05));
+    color: #276749;
+    border-left: 4px solid #48bb78;
+}
+
+.alert-warning {
+    background: linear-gradient(145deg, rgba(237, 137, 54, 0.1), rgba(237, 137, 54, 0.05));
+    color: #975a16;
+    border-left: 4px solid #ed8936;
+}
+
+.alert-danger {
+    background: linear-gradient(145deg, rgba(245, 101, 101, 0.1), rgba(245, 101, 101, 0.05));
+    color: #c53030;
+    border-left: 4px solid #f56565;
+}
+
+/* Loading States */
+.d-none {
+    display: none !important;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus States */
+*:focus {
+    outline: 2px solid rgba(102, 126, 234, 0.5);
+    outline-offset: 2px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #5a6fd8, #6b5b95);
+}
+
+/* Animation for panel appearance */
+@keyframes slideInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+}
+100% {
+    opacity: 1;
+    transform: translateY(0);
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+<style>
+:root {
+  /* Lilac Theme Variables */
+  --primary-lilac: #b57edc;
+  --primary-lilac-dark: #7a3db8;
+  --primary-lilac-light: #d6b4fc;
+  --lilac-gradient: linear-gradient(135deg, #b57edc 0%, #7a3db8 100%);
+  --lilac-gradient-alt: linear-gradient(135deg, #a66dd4, #6a1b9a);
+  --text-lilac: #6a1b9a;
+  --bg-lilac-light: rgba(181, 126, 220, 0.1);
+  --shadow-lilac: rgba(106, 27, 154, 0.2);
+}
+.labs-hero::before {
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+.text-white-75 { color: rgba(255, 255, 255, 0.85) !important; }
+
+/* Hero Stats */
+.hero-stats {
+  margin-top: 2rem;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1rem 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary-lilac-light);
+  display: block;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.25rem;
+}
+
+/* Enhanced Glass Cards */
+.glass-card { 
+  position: relative; 
+  border-radius: 20px; 
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08)); 
+  backdrop-filter: blur(15px); 
+  border: 1px solid rgba(255,255,255,0.2); 
+  box-shadow: 0 15px 35px var(--shadow-lilac); 
+  overflow: hidden; 
+  transition: transform 0.4s ease, box-shadow 0.4s ease; 
+  cursor: pointer;
+}
+
+.glass-card:hover { 
+  transform: translateY(-8px) scale(1.02); 
+  box-shadow: 0 25px 50px rgba(106, 27, 154, 0.3); 
+}
+
+.glass-card .card-inner { 
+  padding: 2rem 1.5rem; 
+  position: relative;
+  z-index: 2;
+}
+
+/* Feature Card Enhancements */
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--lilac-gradient);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 20px rgba(106, 27, 154, 0.3);
+}
+
+.feature-icon i {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.feature-title {
+  color: var(--text-lilac);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.feature-description {
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.feature-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.stat-item {
+  text-align: center;
+  flex: 1;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: #888;
+  display: block;
+}
+
+.stat-value {
+  font-weight: 700;
+  color: var(--primary-lilac-dark);
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 0.2rem;
+}
+
+/* Lilac Gradient Button */
+.btn-lilac-gradient {
+  background: var(--lilac-gradient);
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 25px;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3);
+}
+
+.btn-lilac-gradient:hover {
+  background: var(--lilac-gradient-alt);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(106, 27, 154, 0.4);
+  color: white;
+}
+
+/* Enhanced Panels */
+.card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(106, 27, 154, 0.15);
+  overflow: hidden;
+}
+
+.card-header {
+  background: var(--lilac-gradient);
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 1rem 1.5rem;
+  border: none;
+}
+
+.card-body {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Enhanced Metrics */
+.metric { 
+  background: var(--bg-lilac-light); 
+  border: 1px solid rgba(181, 126, 220, 0.2); 
+  border-radius: 12px; 
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.metric:hover {
+  background: rgba(181, 126, 220, 0.15);
+  transform: translateY(-1px);
+}
+
+.metric-label { 
+  font-size: 0.75rem; 
+  color: var(--text-lilac); 
+  font-weight: 600;
+}
+
+.metric-value { 
+  font-weight: 800; 
+  color: var(--primary-lilac-dark);
+  font-size: 1.1rem;
+}
+
+/* Enhanced Aspect Chips */
+.aspect-chip { 
+  border-radius: 25px; 
+  padding: 0.5rem 1rem; 
+  color: #fff; 
+  font-weight: 600; 
+  cursor: pointer; 
+  user-select: none; 
+  transition: all 0.3s ease;
+  margin: 0.25rem;
+  display: inline-block;
+  border: 2px solid transparent;
+}
+
+.aspect-chip:hover { 
+  transform: translateY(-2px) scale(1.05); 
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Form Enhancements */
+.form-control {
+  border-radius: 10px;
+  border: 2px solid rgba(181, 126, 220, 0.2);
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: var(--primary-lilac);
+  box-shadow: 0 0 0 0.2rem rgba(181, 126, 220, 0.25);
+}
+
+.btn-primary {
+  background: var(--lilac-gradient);
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-primary:hover {
+  background: var(--lilac-gradient-alt);
+  transform: translateY(-1px);
+}
+
+/* Loading States */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(181, 126, 220, 0.4), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-stats .col-4 {
+    margin-bottom: 1rem;
+  }
+  
+  .feature-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .stat-item {
+    text-align: left;
+  }
+}
+</style>
+
+<script>
+(() => {
+  // Utility: show exactly one panel, scroll to it
+  function showPanel(key) {
+    const id = key === 'aspects' ? '#panel-aspects' : key === 'price' ? '#panel-price' : key === 'verdict' ? '#panel-verdict' : null;
+    if (!id) return;
+    document.querySelectorAll('#panel-aspects, #panel-price, #panel-verdict').forEach(el => el.classList.add('d-none'));
+    const panel = document.querySelector(id);
+    panel.classList.remove('d-none');
+    setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  // Initialize page with animations and interactions
+  document.addEventListener('DOMContentLoaded', () => {
+    initializeStats();
+    setupFeatureCardListeners();
+    addLoadingStates();
+  });
+
+  // Initialize animated statistics
+  function initializeStats() {
+    const totalAnalysesEl = document.getElementById('totalAnalyses');
+    if (totalAnalysesEl) {
+      animateNumber(totalAnalysesEl, 0, 1247, 2000);
+  }
+
+  // Animate number counter
+  function animateNumber(element, start, end, duration) {
+    const startTime = performance.now();
+    const range = end - start;
+    
+    function updateNumber(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const current = Math.floor(start + (range * easeOutQuart(progress)));
+      
+      element.textContent = current.toLocaleString();
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateNumber);
+      }
+    }
+    
+    requestAnimationFrame(updateNumber);
+  }
+
+  // Easing function for smooth animation
+  function easeOutQuart(t) {
+    return 1 - (--t) * t * t * t;
+  }
+
+  // Setup click listeners for feature cards
+  function setupFeatureCardListeners() {
+    document.querySelectorAll('.feature-card[data-feature]').forEach(card => {
+      const button = card.querySelector('.btn-lilac-gradient');
+      const feature = card.getAttribute('data-feature');
+      
+      const clickHandler = (e) => {
+        e.preventDefault();
+        showPanel(feature);
+        
+        // Add click animation
+        card.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          card.style.transform = '';
+        }, 150);
+      };
+      
+      card.addEventListener('click', clickHandler);
+      button?.addEventListener('click', clickHandler);
+    });
+  }
+
+  // Add loading state helpers
+  function addLoadingStates() {
+    window.setLoadingState = function(element, isLoading) {
+      if (isLoading) {
+        element.classList.add('loading');
+        element.style.pointerEvents = 'none';
+      } else {
+        element.classList.remove('loading');
+        element.style.pointerEvents = '';
+      }
+    };
+  }
+
+  // Utility: show exactly one panel, scroll to it with enhanced animation
+  function showPanel(key) {
+    const id = key === 'aspects' ? '#panel-aspects' : key === 'price' ? '#panel-price' : key === 'verdict' ? '#panel-verdict' : null;
+    if (!id) return;
+    
+    // Hide all panels with fade out
+    document.querySelectorAll('#panel-aspects, #panel-price, #panel-verdict').forEach(el => {
+      if (!el.classList.contains('d-none')) {
+        el.style.opacity = '0';
+        setTimeout(() => el.classList.add('d-none'), 150);
+      }
+    });
+    
+    // Show selected panel with fade in
+    setTimeout(() => {
+      const panel = document.querySelector(id);
+      panel.classList.remove('d-none');
+      panel.style.opacity = '0';
+      
+      setTimeout(() => {
+        panel.style.opacity = '1';
+        panel.style.transition = 'opacity 0.3s ease';
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }, 200);
+  }
+
+  // Open requested panel based on URL param
+  const params = new URLSearchParams(window.location.search);
+  const open = params.get('open');
+  if (open) showPanel(open);
+  if (open) {
+    setTimeout(() => showPanel(open), 500); // Delay for page load
+  }
+
+  // Shared state
+  let lastScrape = null; // { sample_reviews, price_history, reviews_count }
+
+  // Helpers
+  const colorForSent = (v) => {
+    const clamped = Math.max(-1, Math.min(1, v || 0));
+    const hue = (clamped + 1) * 60; // -1->0 red, 0->60 yellow, 1->120 green
+    return `hsl(${hue}, 85%, 45%)`;
+  };
+  const toSentences = (text) => text.split(/(?<=[.!?])\s+/g).map(s => s.trim()).filter(Boolean);
+
+  async function fetchPreview(url) {
+    const res = await fetch('/api/scrape_preview', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url }) });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || 'Scrape failed');
+    lastScrape = { sample_reviews: data.sample_reviews || [], price_history: data.price_history || [], reviews_count: data.reviews_count || 0 };
+    return lastScrape;
+  }
+
+  async function analyzeTexts(texts) {
+    const res = await fetch('/api/analyze_text', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ texts }) });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || 'Analysis failed');
+    return data.analysis || { overall_sentiment: {}, aspect_sentiments: {} };
+  }
+
+  // ========== Aspect Explorer ==========
+  const urlAspects = document.getElementById('urlAspects');
+  const btnFetchAspects = document.getElementById('btnFetchAspects');
+  const statusAspects = document.getElementById('statusAspects');
+  const aspectChips = document.getElementById('aspectChips');
+  const aspectSentences = document.getElementById('aspectSentences');
+  const aspectsBody = document.getElementById('aspectsBody');
+
+  btnFetchAspects?.addEventListener('click', async () => {
+    statusAspects.innerHTML = '<div class="alert alert-info">Fetching and analyzing...</div>';
+    aspectChips.innerHTML = '';
+    aspectSentences.innerHTML = '';
+    aspectsBody.classList.add('d-none');
+    try {
+      const url = urlAspects.value.trim();
+      if (!url) throw new Error('Please enter a product URL');
+      const preview = await fetchPreview(url);
+      const analysis = await analyzeTexts(preview.sample_reviews);
+      const aspects = analysis.aspect_sentiments || {};
+      const sorted = Object.entries(aspects).sort((a,b) => Math.abs(b[1]) - Math.abs(a[1]));
+      if (sorted.length === 0) {
+        statusAspects.innerHTML = '<div class="alert alert-warning">No aspects identified from the sampled reviews.</div>';
+        return;
+      }
+      // Build chips
+      sorted.forEach(([aspect, score]) => {
+        const chip = document.createElement('span');
+        chip.className = 'aspect-chip';
+        chip.style.background = colorForSent(score);
+        chip.innerText = `${aspect} (${score})`;
+        chip.addEventListener('click', () => {
+          const sents = (preview.sample_reviews || []).flatMap(toSentences);
+          const lower = aspect.toLowerCase();
+          const matches = sents.filter(s => s.toLowerCase().includes(lower)).slice(0, 10);
+          aspectSentences.innerHTML = matches.map(s => `<li class="list-group-item">${s}</li>`).join('') || '<li class="list-group-item">No supporting sentences found.</li>';
+        });
+        aspectChips.appendChild(chip);
+      });
+      aspectsBody.classList.remove('d-none');
+      statusAspects.innerHTML = `<div class="alert alert-success">Analyzed ${preview.reviews_count} reviews (sampled ${preview.sample_reviews.length}). Click a chip to see sentences.</div>`;
+    } catch (e) {
+      statusAspects.innerHTML = `<div class=\"alert alert-danger\">${e.message || 'Unexpected error'}</div>`;
+    // Enhanced loading state
+    setLoadingState(btnFetchAspects, true);
+    statusAspects.innerHTML = '<div class="alert alert-info"><i class="bi bi-hourglass-split me-2"></i>Fetching and analyzing reviews...</div>';
+    aspectChips.innerHTML = '';
+    aspectSentences.innerHTML = '';
+    aspectsBody.classList.add('d-none');
+    
+    try {
+      const url = urlAspects.value.trim();
+      if (!url) throw new Error('Please enter a valid product URL');
+      
+      // Validate URL format
+      if (!url.match(/^https?:\/\/(www\.)?(flipkart|amazon)\.(com|in)\//)) {
+        throw new Error('Please enter a valid Flipkart or Amazon URL');
+      }
+      
+      statusAspects.innerHTML = '<div class="alert alert-info"><i class="bi bi-download me-2"></i>Scraping product reviews...</div>';
+      const preview = await fetchPreview(url);
+      
+      if (!preview.sample_reviews || preview.sample_reviews.length === 0) {
+        throw new Error('No reviews found for this product. It may be too new or have no reviews yet.');
+      }
+      
+      statusAspects.innerHTML = '<div class="alert alert-info"><i class="bi bi-cpu me-2"></i>Analyzing sentiment and extracting aspects...</div>';
+      const analysis = await analyzeTexts(preview.sample_reviews);
+      const aspects = analysis.aspect_sentiments || {};
+      const sorted = Object.entries(aspects).sort((a,b) => Math.abs(b[1]) - Math.abs(a[1]));
+      
+      if (sorted.length === 0) {
+        statusAspects.innerHTML = '<div class="alert alert-warning"><i class="bi bi-exclamation-triangle me-2"></i>No distinct aspects identified from the reviews. The text may be too short or generic.</div>';
+        return;
+      }
+      
+      // Build enhanced chips with tooltips
+      sorted.forEach(([aspect, score], index) => {
+        const chip = document.createElement('span');
+        chip.className = 'aspect-chip';
+        chip.style.background = colorForSent(score);
+        chip.innerHTML = `<strong>${aspect}</strong> <small>(${score > 0 ? '+' : ''}${score.toFixed(2)})</small>`;
+        chip.title = `Sentiment score: ${score.toFixed(2)} (${score > 0.3 ? 'Very Positive' : score > 0.1 ? 'Positive' : score > -0.1 ? 'Neutral' : score > -0.3 ? 'Negative' : 'Very Negative'})`;
+        
+        chip.addEventListener('click', () => {
+          // Remove active state from other chips
+          document.querySelectorAll('.aspect-chip').forEach(c => c.style.border = '2px solid transparent');
+          chip.style.border = '2px solid rgba(255, 255, 255, 0.8)';
+          
+          const sents = (preview.sample_reviews || []).flatMap(toSentences);
+          const lower = aspect.toLowerCase();
+          const matches = sents.filter(s => s.toLowerCase().includes(lower)).slice(0, 8);
+          
+          aspectSentences.innerHTML = matches.length > 0 
+            ? `<div class="mb-2"><strong>Supporting sentences for "${aspect}":</strong></div>` + 
+              matches.map(s => `<li class="list-group-item">${s}</li>`).join('')
+            : '<li class="list-group-item text-muted"><i class="bi bi-info-circle me-2"></i>No supporting sentences found for this aspect.</li>';
+        });
+        
+        aspectChips.appendChild(chip);
+        
+        // Auto-select first (strongest) aspect
+        if (index === 0) {
+          setTimeout(() => chip.click(), 300);
+        }
+      });
+      
+      aspectsBody.classList.remove('d-none');
+      statusAspects.innerHTML = `<div class="alert alert-success"><i class="bi bi-check-circle me-2"></i>Successfully analyzed <strong>${preview.reviews_count}</strong> reviews (sampled ${preview.sample_reviews.length}). Found <strong>${sorted.length}</strong> key aspects. Click any chip to see supporting sentences.</div>`;
+      
+    } catch (e) {
+      statusAspects.innerHTML = `<div class="alert alert-danger"><i class="bi bi-exclamation-circle me-2"></i><strong>Analysis Failed:</strong> ${e.message || 'An unexpected error occurred. Please try again.'}</div>`;
+    } finally {
+      setLoadingState(btnFetchAspects, false);
+    }
+  });
+
+  // ========== Price Insight Simulator ==========
+  const urlPrice = document.getElementById('urlPrice');
+  const btnFetchPrice = document.getElementById('btnFetchPrice');
+  const statusPrice = document.getElementById('statusPrice');
+  const priceBody = document.getElementById('priceBody');
+  const fromDate = document.getElementById('fromDate');
+  const toDate = document.getElementById('toDate');
+  const btnApplyRange = document.getElementById('btnApplyRange');
+  const btnResetRange = document.getElementById('btnResetRange');
+  const mLatest = document.getElementById('mLatest');
+  const mMin = document.getElementById('mMin');
+  const mMax = document.getElementById('mMax');
+  const mVol = document.getElementById('mVol');
+  let priceChart;
+
+  function computeMetrics(series) {
+    if (!series.length) return { latest: '—', min: '—', max: '—', vol: '—' };
+    const prices = series.map(p => p.price);
+    const latest = series[series.length - 1].price;
+    const min = Math.min(...prices), max = Math.max(...prices);
+    const mean = prices.reduce((a,b)=>a+b,0)/prices.length;
+    const variance = prices.reduce((a,b)=>a+Math.pow(b-mean,2),0)/prices.length;
+    const std = Math.sqrt(variance);
+    const vol = mean ? (std/mean*100).toFixed(2) + '%' : '—';
+    return { latest, min, max, vol };
+  }
+
+  function drawPriceChart(series) {
+    const ctx = document.getElementById('priceChartPreview').getContext('2d');
+    if (priceChart) priceChart.destroy();
+    priceChart = new Chart(ctx, {
+      type: 'line',
+      data: { labels: series.map(s => s.timestamp), datasets: [{ label: 'Price', data: series.map(s => s.price), borderColor: '#20c997', backgroundColor: 'transparent', tension: 0.15 }] },
+      options: { scales: { x: { type: 'time', time: { unit: 'day' } }, y: { title: { display: true, text: 'Price' } } } }
+    });
+  }
+
+  function applyRange(series) {
+    const from = fromDate.value ? new Date(fromDate.value) : null;
+    const to = toDate.value ? new Date(toDate.value) : null;
+    const filtered = series.filter(p => { const d = new Date(p.timestamp); if (from && d < from) return false; if (to && d > to) return false; return true; });
+    const m = computeMetrics(filtered);
+    mLatest.textContent = m.latest; mMin.textContent = m.min; mMax.textContent = m.max; mVol.textContent = m.vol;
+    drawPriceChart(filtered);
+  }
+
+  btnFetchPrice?.addEventListener('click', async () => {
+    statusPrice.innerHTML = '<div class="alert alert-info">Fetching price history...</div>';
+    priceBody.classList.add('d-none');
+    try {
+      const url = urlPrice.value.trim();
+      if (!url) throw new Error('Please enter a product URL');
+      const preview = await fetchPreview(url);
+      const hist = preview.price_history || [];
+      if (!hist.length) { statusPrice.innerHTML = '<div class="alert alert-warning">No price history available yet. Trigger analysis a few times to build history.</div>'; return; }
+      const first = new Date(hist[0].timestamp); const last = new Date(hist[hist.length-1].timestamp);
+      const toISODate = d => new Date(d.getTime() - d.getTimezoneOffset()*60000).toISOString().substring(0,10);
+      fromDate.value = toISODate(first); toDate.value = toISODate(last);
+      applyRange(hist);
+      priceBody.classList.remove('d-none');
+      statusPrice.innerHTML = '<div class="alert alert-success">Price data loaded.</div>';
+    } catch (e) {
+      statusPrice.innerHTML = `<div class=\"alert alert-danger\">${e.message || 'Unexpected error'}</div>`;
+    }
+  });
+
+  btnApplyRange?.addEventListener('click', () => { if (lastScrape?.price_history) applyRange(lastScrape.price_history); });
+  btnResetRange?.addEventListener('click', () => {
+    if (!lastScrape?.price_history?.length) return;
+    const hist = lastScrape.price_history; const first = new Date(hist[0].timestamp); const last = new Date(hist[hist.length-1].timestamp);
+    const toISODate = d => new Date(d.getTime() - d.getTimezoneOffset()*60000).toISOString().substring(0,10);
+    fromDate.value = toISODate(first); toDate.value = toISODate(last); applyRange(hist);
+  });
+
+  // ========== Verdict Composer ==========
+  const inputMode = document.getElementById('inputMode');
+  const customTextBox = document.getElementById('customTextBox');
+  const customTexts = document.getElementById('customTexts');
+  const weightSlider = document.getElementById('weightSlider');
+  const threshSlider = document.getElementById('threshSlider');
+  const wReviews = document.getElementById('wReviews');
+  const wAspects = document.getElementById('wAspects');
+  const btnCompose = document.getElementById('btnCompose');
+  const btnSpeak = document.getElementById('btnSpeak');
+  const composeStatus = document.getElementById('composeStatus');
+  const composeResults = document.getElementById('composeResults');
+  const cScore = document.getElementById('cScore');
+  const cPros = document.getElementById('cPros');
+  const cCons = document.getElementById('cCons');
+  const cVerdict = document.getElementById('cVerdict');
+
+  let mode = 'scraped';
+  inputMode?.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-mode]'); if (!btn) return;
+    inputMode.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.getAttribute('data-mode');
+    customTextBox.classList.toggle('d-none', mode !== 'custom');
+  });
+
+  weightSlider?.addEventListener('input', () => { wReviews.textContent = weightSlider.value; wAspects.textContent = 100 - Number(weightSlider.value); });
+
+  function buildProsCons(aspects, thresh) {
+    const POS_TH = thresh/100; const NEG_TH = -POS_TH;
+    const entries = Object.entries(aspects || {});
+    const sortedDesc = entries.sort((a,b)=>b[1]-a[1]);
+    const sortedAsc = [...sortedDesc].reverse();
+    let pros = sortedDesc.filter(([_,s])=>s>=POS_TH).slice(0,2);
+    let cons = sortedAsc.filter(([_,s])=>s<=NEG_TH).slice(0,2);
+    if (pros.length<2) pros = sortedDesc.slice(0,2);
+    if (cons.length<2) cons = sortedAsc.slice(0,2);
+    return { pros, cons };
+  }
+
+  function composeVerdict(score, pros, cons) {
+    let recommendation = score>=70? 'recommended' : score>=50? 'acceptable' : 'not recommended';
+    let verdict = `This product is ${recommendation} with a score of ${Math.round(score)}%.`;
+    if (pros?.length) verdict += ` Customers love the ${pros.map(p=>p[0]).join(', ')}.`;
+    if (cons?.length) verdict += ` However, they complain about the ${cons.map(c=>c[0]).join(', ')}.`;
+    return verdict;
+  }
+
+  btnCompose?.addEventListener('click', async () => {
+    composeStatus.innerHTML = '<div class="alert alert-info">Composing...</div>';
+    composeResults.classList.add('d-none');
+    try {
+      let texts = [];
+      if (mode === 'scraped') {
+        if (!lastScrape?.sample_reviews?.length) throw new Error('No scraped sample available. Use Aspect Explorer or Price Simulator first.');
+        texts = lastScrape.sample_reviews;
+      } else {
+        texts = customTexts.value.split('\n').map(s=>s.trim()).filter(Boolean);
+        if (!texts.length) throw new Error('Enter at least one line of custom text.');
+      }
+      const analysis = await analyzeTexts(texts);
+      const os = analysis.overall_sentiment || {}; const aspects = analysis.aspect_sentiments || {};
+      const total = (os.positive||0) + (os.negative||0) + (os.neutral||0);
+      const posRatio = total ? (os.positive||0)/total : 0;
+      const avgAspect = Object.values(aspects).length ? Object.values(aspects).reduce((a,b)=>a+b,0)/Object.values(aspects).length : 0;
+      const normAspect = (avgAspect + 1)/2; // [-1,1] -> [0,1]
+      const wRev = Number(weightSlider.value)/100; const wAsp = 1 - wRev;
+      const score = (posRatio*wRev + normAspect*wAsp) * 100;
+      const pc = buildProsCons(aspects, Number(threshSlider.value));
+
+      cScore.textContent = Math.round(score);
+      cPros.innerHTML = pc.pros.map(([a,s])=>`<li class=\"list-group-item\"><strong>${a}</strong> <span class=\"badge bg-success ms-2\">${s}</span></li>`).join('') || '<li class="list-group-item">—</li>';
+      cCons.innerHTML = pc.cons.map(([a,s])=>`<li class=\"list-group-item\"><strong>${a}</strong> <span class=\"badge bg-danger ms-2\">${s}</span></li>`).join('') || '<li class="list-group-item">—</li>';
+      const verdict = composeVerdict(score, pc.pros, pc.cons);
+      cVerdict.textContent = verdict;
+      composeResults.classList.remove('d-none');
+      composeStatus.innerHTML = '';
+    } catch (e) {
+      composeStatus.innerHTML = `<div class=\"alert alert-danger\">${e.message || 'Unexpected error'}</div>`;
+    }
+  });
+
+  btnSpeak?.addEventListener('click', () => {
+    if (!('speechSynthesis' in window)) { alert('Speech synthesis not supported in this browser.'); return; }
+    const text = document.getElementById('cVerdict').textContent.trim();
+    if (!text) { alert('Compose a verdict first.'); return; }
+    const u = new SpeechSynthesisUtterance(text); u.lang = 'en-US'; u.rate = 1.0; u.pitch = 1.0; window.speechSynthesis.speak(u);
+  });
+</script>
+{% endblock %}
