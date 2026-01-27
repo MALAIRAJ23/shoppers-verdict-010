@@ -278,11 +278,6 @@ def generate_enhanced_voice_verdict(score, pros, cons, category):
     
     return verdict
 
-@app.route('/features')
-def features():
-    """Enhanced features page"""
-    return render_template('features.html')
-
 @app.route('/analyze', methods=['POST'])
 def analyze():
     """Handle form submission"""

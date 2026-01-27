@@ -1,1 +1,0 @@
-"# shoppers-verdict-010" 
