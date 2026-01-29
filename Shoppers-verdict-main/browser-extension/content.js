@@ -4,6 +4,32 @@
 (function() {
     'use strict';
     
+    // Add keyboard shortcut listener
+    document.addEventListener('keydown', handleKeyboardShortcut);
+    
+    function handleKeyboardShortcut(event) {
+        // Alt + Shift + V to trigger analysis (or Ctrl + Shift + V on Mac)
+        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+        const isValidShortcut = isMac 
+            ? (event.ctrlKey && event.shiftKey && event.key === 'V')
+            : (event.altKey && event.shiftKey && event.key === 'V');
+        
+        if (isValidShortcut) {
+            event.preventDefault();
+            triggerProductAnalysis();
+        }
+    }
+    
+    function triggerProductAnalysis() {
+        console.log('Keyboard shortcut triggered analysis');
+        chrome.runtime.sendMessage({action: 'triggerAnalysis'}, (response) => {
+            if (chrome.runtime.lastError) {
+                console.log('Opening popup instead...');
+                // Popup will open automatically
+            }
+        });
+    }
+    
     // Configuration
     const CONFIG = {
         API_BASE_URL: 'http://localhost:5000',

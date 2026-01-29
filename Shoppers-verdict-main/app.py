@@ -3,23 +3,45 @@ from flask_cors import CORS
 import traceback
 import time
 from datetime import datetime
+import logging
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Configure logging
+logging.basicConfig(
+    level=getattr(logging, os.getenv('LOG_LEVEL', 'INFO')),
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(os.getenv('LOG_FILE', 'app.log')),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+# Configuration
+ENHANCED_MODULES = False
+RECOMMENDATIONS_AVAILABLE = False
 
 # Import modules
 try:
     from scraper import scrape_data, detect_product_category
     from analyzer import perform_analysis, analyze_product_description, EnhancedAnalyzer
     ENHANCED_MODULES = True
+    logger.info("Enhanced modules loaded successfully")
 except ImportError as e:
-    print(f"Error importing modules: {e}")
-    print("Please ensure all required modules are available.")
-    ENHANCED_MODULES = False
+    logger.error(f"Error importing modules: {e}")
+    logger.warning("Please ensure all required modules are available.")
 
 try:
     from recommendation_engine import get_product_recommendations
     RECOMMENDATIONS_AVAILABLE = True
-except ImportError:
+    logger.info("Recommendation engine loaded successfully")
+except ImportError as e:
     RECOMMENDATIONS_AVAILABLE = False
-    print("Recommendation engine not available")
+    logger.warning(f"Recommendation engine not available: {e}")
 
 class ExceptionMiddleware:
     def __init__(self, app):
@@ -30,12 +52,35 @@ class ExceptionMiddleware:
             return self.app(environ, start_response)
         except Exception:
             error_traceback = traceback.format_exc()
+            logger.error(f"Unhandled exception: {error_traceback}")
             start_response('500 INTERNAL SERVER ERROR', [('Content-Type', 'text/plain')])
             return [error_traceback.encode('utf-8')]
 
 app = Flask(__name__)
-CORS(app, origins=['*'], allow_headers=['Content-Type'], methods=['GET', 'POST', 'OPTIONS'])
+
+# Security headers middleware
+@app.after_request
+def set_security_headers(response):
+    """Add security headers to all responses"""
+    if os.getenv('SECURITY_HEADERS_ENABLED', 'True') == 'True':
+        response.headers['X-Content-Type-Options'] = 'nosniff'
+        response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+        response.headers['X-XSS-Protection'] = '1; mode=block'
+        response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+        response.headers['Permissions-Policy'] = 'geolocation=(), microphone=(), camera=()'
+    return response
+
+# Configure CORS
+cors_origins = os.getenv('CORS_ORIGINS', '*')
+CORS(app, 
+     origins=cors_origins if cors_origins != '*' else ['*'], 
+     allow_headers=['Content-Type'], 
+     methods=['GET', 'POST', 'OPTIONS'],
+     supports_credentials=True)
+
 app.wsgi_app = ExceptionMiddleware(app.wsgi_app)
+
+logger.info("Application initialized successfully")
 
 @app.route('/', methods=['GET', 'POST'])
 def index():

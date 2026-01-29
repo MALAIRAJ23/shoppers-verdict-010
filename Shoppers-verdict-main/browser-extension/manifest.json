@@ -1,16 +1,18 @@
 {
   "manifest_version": 3,
   "name": "Shopper's Verdict",
-  "version": "1.0.0",
-  "description": "AI-powered shopping assistant that analyzes product reviews and provides worth-to-buy scores",
+  "version": "2.0.0",
+  "description": "AI-powered shopping assistant that analyzes product reviews and provides worth-to-buy scores with keyboard shortcuts and history",
   "permissions": [
     "activeTab",
-    "storage"
+    "storage",
+    "scripting"
   ],
   "host_permissions": [
     "https://www.amazon.in/*",
     "https://www.amazon.com/*",
-    "https://www.flipkart.com/*"
+    "https://www.flipkart.com/*",
+    "http://localhost:5000/*"
   ],
   "content_scripts": [
     {
@@ -29,7 +31,7 @@
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Shopper's Verdict",
+    "default_title": "Shopper's Verdict (Alt+Shift+V)",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
@@ -43,5 +45,14 @@
   },
   "background": {
     "service_worker": "background.js"
+  },
+  "commands": {
+    "analyze-product": {
+      "suggested_key": {
+        "default": "Alt+Shift+V",
+        "mac": "MacCtrl+Shift+V"
+      },
+      "description": "Analyze current product page"
+    }
   }
 }

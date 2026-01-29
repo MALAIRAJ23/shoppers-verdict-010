@@ -1,0 +1,262 @@
+2026-01-29 12:12:16,245 - __main__ - INFO - Enhanced modules loaded successfully
+2026-01-29 12:12:25,439 - __main__ - INFO - Recommendation engine loaded successfully
+2026-01-29 12:12:25,453 - werkzeug - WARNING -  * Debugger is active!
+2026-01-29 12:12:25,466 - werkzeug - INFO -  * Debugger PIN: 234-244-881
+2026-01-29 12:13:25,742 - werkzeug - INFO -  * Detected change in 'D:\\Shoppers-verdict-main\\Shoppers-verdict-main\\app.py', reloading
+2026-01-29 12:13:25,745 - werkzeug - INFO -  * Detected change in 'D:\\Shoppers-verdict-main\\Shoppers-verdict-main\\app.py', reloading
+2026-01-29 12:13:30,000 - __main__ - INFO - Enhanced modules loaded successfully
+2026-01-29 12:13:40,046 - __main__ - INFO - Recommendation engine loaded successfully
+2026-01-29 12:13:40,062 - __main__ - INFO - Application initialized successfully
+2026-01-29 12:13:40,078 - werkzeug - WARNING -  * Debugger is active!
+2026-01-29 12:13:40,094 - werkzeug - INFO -  * Debugger PIN: 234-244-881
+2026-01-29 12:13:47,272 - werkzeug - INFO - 127.0.0.1 - - [29/Jan/2026 12:13:47] "GET / HTTP/1.1" 200 -
+2026-01-29 12:13:47,842 - werkzeug - INFO - 127.0.0.1 - - [29/Jan/2026 12:13:47] "GET /static/css/style.css HTTP/1.1" 200 -
+2026-01-29 12:13:48,044 - werkzeug - INFO - 127.0.0.1 - - [29/Jan/2026 12:13:48] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-01-29 12:19:12,016 - werkzeug - INFO -  * Detected change in 'D:\\Shoppers-verdict-main\\Shoppers-verdict-main\\recommendation_engine.py', reloading
+2026-01-29 12:19:12,018 - werkzeug - INFO -  * Detected change in 'D:\\Shoppers-verdict-main\\Shoppers-verdict-main\\recommendation_engine.py', reloading
+2026-01-29 12:19:15,145 - __main__ - INFO - Enhanced modules loaded successfully
+2026-01-29 12:19:23,399 - __main__ - INFO - Recommendation engine loaded successfully
+2026-01-29 12:19:23,403 - __main__ - INFO - Application initialized successfully
+2026-01-29 12:19:23,441 - werkzeug - WARNING -  * Debugger is active!
+2026-01-29 12:19:23,471 - werkzeug - INFO -  * Debugger PIN: 234-244-881
+2026-01-29 12:22:30,941 - werkzeug - INFO -  * Detected change in 'D:\\Shoppers-verdict-main\\Shoppers-verdict-main\\recommendation_engine.py', reloading
+2026-01-29 12:22:30,944 - werkzeug - INFO -  * Detected change in 'D:\\Shoppers-verdict-main\\Shoppers-verdict-main\\recommendation_engine.py', reloading
+2026-01-29 12:22:33,739 - __main__ - INFO - Enhanced modules loaded successfully
+2026-01-29 12:22:41,748 - __main__ - INFO - Recommendation engine loaded successfully
+2026-01-29 12:22:41,748 - __main__ - INFO - Application initialized successfully
+2026-01-29 12:22:41,763 - werkzeug - WARNING -  * Debugger is active!
+2026-01-29 12:22:41,770 - werkzeug - INFO -  * Debugger PIN: 234-244-881
+2026-01-29 12:23:13,818 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\exceptions.py', reloading
+2026-01-29 12:23:13,822 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\formparser.py', reloading
+2026-01-29 12:23:13,822 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\http.py', reloading
+2026-01-29 12:23:13,823 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\local.py', reloading
+2026-01-29 12:23:13,824 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\security.py', reloading
+2026-01-29 12:23:13,824 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\serving.py', reloading
+2026-01-29 12:23:13,824 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\test.py', reloading
+2026-01-29 12:23:13,826 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\testapp.py', reloading
+2026-01-29 12:23:13,827 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\urls.py', reloading
+2026-01-29 12:23:13,828 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\user_agent.py', reloading
+2026-01-29 12:23:13,828 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\utils.py', reloading
+2026-01-29 12:23:13,829 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\wsgi.py', reloading
+2026-01-29 12:23:13,831 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\_internal.py', reloading
+2026-01-29 12:23:13,831 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\_reloader.py', reloading
+2026-01-29 12:23:13,831 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\__init__.py', reloading
+2026-01-29 12:23:13,832 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\accept.py', reloading
+2026-01-29 12:23:13,832 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\auth.py', reloading
+2026-01-29 12:23:13,832 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\cache_control.py', reloading
+2026-01-29 12:23:13,832 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\csp.py', reloading
+2026-01-29 12:23:13,835 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\etag.py', reloading
+2026-01-29 12:23:13,835 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\file_storage.py', reloading
+2026-01-29 12:23:13,838 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\headers.py', reloading
+2026-01-29 12:23:13,838 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\mixins.py', reloading
+2026-01-29 12:23:13,838 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\range.py', reloading
+2026-01-29 12:23:13,841 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\structures.py', reloading
+2026-01-29 12:23:13,843 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\__init__.py', reloading
+2026-01-29 12:23:13,847 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\console.py', reloading
+2026-01-29 12:23:13,848 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\repr.py', reloading
+2026-01-29 12:23:13,850 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\tbtools.py', reloading
+2026-01-29 12:23:13,850 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\__init__.py', reloading
+2026-01-29 12:23:13,853 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\dispatcher.py', reloading
+2026-01-29 12:23:13,853 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\http_proxy.py', reloading
+2026-01-29 12:23:13,859 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\lint.py', reloading
+2026-01-29 12:23:13,859 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\profiler.py', reloading
+2026-01-29 12:23:13,861 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\proxy_fix.py', reloading
+2026-01-29 12:23:13,861 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\shared_data.py', reloading
+2026-01-29 12:23:13,863 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\__init__.py', reloading
+2026-01-29 12:23:13,868 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\converters.py', reloading
+2026-01-29 12:23:13,870 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\exceptions.py', reloading
+2026-01-29 12:23:13,871 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\map.py', reloading
+2026-01-29 12:23:13,871 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\matcher.py', reloading
+2026-01-29 12:23:13,871 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\rules.py', reloading
+2026-01-29 12:23:13,871 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\__init__.py', reloading
+2026-01-29 12:23:13,877 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\http.py', reloading
+2026-01-29 12:23:13,878 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\multipart.py', reloading
+2026-01-29 12:23:13,878 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\request.py', reloading
+2026-01-29 12:23:13,878 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\response.py', reloading
+2026-01-29 12:23:13,878 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\utils.py', reloading
+2026-01-29 12:23:13,878 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\__init__.py', reloading
+2026-01-29 12:23:13,883 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\wrappers\\request.py', reloading
+2026-01-29 12:23:13,883 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\wrappers\\response.py', reloading
+2026-01-29 12:23:13,883 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\wrappers\\__init__.py', reloading
+2026-01-29 12:23:13,888 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\exceptions.py', reloading
+2026-01-29 12:23:13,889 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\formparser.py', reloading
+2026-01-29 12:23:13,889 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\http.py', reloading
+2026-01-29 12:23:13,891 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\local.py', reloading
+2026-01-29 12:23:13,891 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\security.py', reloading
+2026-01-29 12:23:13,891 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\serving.py', reloading
+2026-01-29 12:23:13,891 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\test.py', reloading
+2026-01-29 12:23:13,891 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\testapp.py', reloading
+2026-01-29 12:23:13,891 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\urls.py', reloading
+2026-01-29 12:23:13,891 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\user_agent.py', reloading
+2026-01-29 12:23:13,897 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\_internal.py', reloading
+2026-01-29 12:23:13,898 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\_reloader.py', reloading
+2026-01-29 12:23:13,898 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\__init__.py', reloading
+2026-01-29 12:23:13,900 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\__init__.py', reloading
+2026-01-29 12:23:13,901 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\__init__.py', reloading
+2026-01-29 12:23:13,901 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\_internal.py', reloading
+2026-01-29 12:23:13,901 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\_internal.py', reloading
+2026-01-29 12:23:13,901 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\_reloader.py', reloading
+2026-01-29 12:23:13,904 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\_reloader.py', reloading
+2026-01-29 12:23:13,904 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\exceptions.py', reloading
+2026-01-29 12:23:13,904 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\exceptions.py', reloading
+2026-01-29 12:23:13,904 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\formparser.py', reloading
+2026-01-29 12:23:13,908 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\formparser.py', reloading
+2026-01-29 12:23:13,908 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\http.py', reloading
+2026-01-29 12:23:13,909 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\http.py', reloading
+2026-01-29 12:23:13,909 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\local.py', reloading
+2026-01-29 12:23:13,909 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\local.py', reloading
+2026-01-29 12:23:13,909 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\security.py', reloading
+2026-01-29 12:23:13,909 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\security.py', reloading
+2026-01-29 12:23:13,912 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\serving.py', reloading
+2026-01-29 12:23:13,912 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\serving.py', reloading
+2026-01-29 12:23:13,912 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\test.py', reloading
+2026-01-29 12:23:13,915 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\test.py', reloading
+2026-01-29 12:23:13,915 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\testapp.py', reloading
+2026-01-29 12:23:13,917 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\testapp.py', reloading
+2026-01-29 12:23:13,918 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\urls.py', reloading
+2026-01-29 12:23:13,918 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\urls.py', reloading
+2026-01-29 12:23:13,918 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\user_agent.py', reloading
+2026-01-29 12:23:13,920 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\user_agent.py', reloading
+2026-01-29 12:23:13,921 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\utils.py', reloading
+2026-01-29 12:23:13,921 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\utils.py', reloading
+2026-01-29 12:23:13,921 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\wsgi.py', reloading
+2026-01-29 12:23:13,921 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\wsgi.py', reloading
+2026-01-29 12:23:13,923 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\accept.py', reloading
+2026-01-29 12:23:13,923 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\auth.py', reloading
+2026-01-29 12:23:13,923 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\cache_control.py', reloading
+2026-01-29 12:23:13,923 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\csp.py', reloading
+2026-01-29 12:23:13,923 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\etag.py', reloading
+2026-01-29 12:23:13,923 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\file_storage.py', reloading
+2026-01-29 12:23:13,927 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\headers.py', reloading
+2026-01-29 12:23:13,927 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\mixins.py', reloading
+2026-01-29 12:23:13,928 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\range.py', reloading
+2026-01-29 12:23:13,929 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\__init__.py', reloading
+2026-01-29 12:23:13,929 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\__init__.py', reloading
+2026-01-29 12:23:13,929 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\__init__.py', reloading
+2026-01-29 12:23:13,931 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\accept.py', reloading
+2026-01-29 12:23:13,931 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\accept.py', reloading
+2026-01-29 12:23:13,931 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\auth.py', reloading
+2026-01-29 12:23:13,933 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\auth.py', reloading
+2026-01-29 12:23:13,933 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\cache_control.py', reloading
+2026-01-29 12:23:13,933 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\cache_control.py', reloading
+2026-01-29 12:23:13,933 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\csp.py', reloading
+2026-01-29 12:23:13,933 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\csp.py', reloading
+2026-01-29 12:23:13,937 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\etag.py', reloading
+2026-01-29 12:23:13,937 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\etag.py', reloading
+2026-01-29 12:23:13,939 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\file_storage.py', reloading
+2026-01-29 12:23:13,939 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\file_storage.py', reloading
+2026-01-29 12:23:13,939 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\headers.py', reloading
+2026-01-29 12:23:13,941 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\headers.py', reloading
+2026-01-29 12:23:13,942 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\mixins.py', reloading
+2026-01-29 12:23:13,942 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\mixins.py', reloading
+2026-01-29 12:23:13,943 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\range.py', reloading
+2026-01-29 12:23:13,945 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\range.py', reloading
+2026-01-29 12:23:13,946 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\structures.py', reloading
+2026-01-29 12:23:13,946 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\datastructures\\structures.py', reloading
+2026-01-29 12:23:13,948 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\console.py', reloading
+2026-01-29 12:23:13,948 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\repr.py', reloading
+2026-01-29 12:23:13,949 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\tbtools.py', reloading
+2026-01-29 12:23:13,949 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\__init__.py', reloading
+2026-01-29 12:23:13,950 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\__init__.py', reloading
+2026-01-29 12:23:13,951 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\__init__.py', reloading
+2026-01-29 12:23:13,952 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\console.py', reloading
+2026-01-29 12:23:13,953 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\console.py', reloading
+2026-01-29 12:23:13,953 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\repr.py', reloading
+2026-01-29 12:23:13,954 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\repr.py', reloading
+2026-01-29 12:23:13,954 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\tbtools.py', reloading
+2026-01-29 12:23:13,955 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\debug\\tbtools.py', reloading
+2026-01-29 12:23:13,957 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\dispatcher.py', reloading
+2026-01-29 12:23:13,958 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\http_proxy.py', reloading
+2026-01-29 12:23:13,958 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\lint.py', reloading
+2026-01-29 12:23:13,959 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\profiler.py', reloading
+2026-01-29 12:23:13,959 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\proxy_fix.py', reloading
+2026-01-29 12:23:13,959 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\shared_data.py', reloading
+2026-01-29 12:23:13,959 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\__init__.py', reloading
+2026-01-29 12:23:13,959 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\__init__.py', reloading
+2026-01-29 12:23:13,959 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\dispatcher.py', reloading
+2026-01-29 12:23:13,959 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\dispatcher.py', reloading
+2026-01-29 12:23:13,959 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\http_proxy.py', reloading
+2026-01-29 12:23:13,959 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\http_proxy.py', reloading
+2026-01-29 12:23:13,959 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\lint.py', reloading
+2026-01-29 12:23:13,959 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\lint.py', reloading
+2026-01-29 12:23:13,959 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\profiler.py', reloading
+2026-01-29 12:23:13,966 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\profiler.py', reloading
+2026-01-29 12:23:13,966 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\proxy_fix.py', reloading
+2026-01-29 12:23:13,967 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\proxy_fix.py', reloading
+2026-01-29 12:23:13,968 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\shared_data.py', reloading
+2026-01-29 12:23:13,968 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\middleware\\shared_data.py', reloading
+2026-01-29 12:23:13,969 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\converters.py', reloading
+2026-01-29 12:23:13,969 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\exceptions.py', reloading
+2026-01-29 12:23:13,969 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\map.py', reloading
+2026-01-29 12:23:13,969 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\matcher.py', reloading
+2026-01-29 12:23:13,969 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\rules.py', reloading
+2026-01-29 12:23:13,969 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\__init__.py', reloading
+2026-01-29 12:23:13,969 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\__init__.py', reloading
+2026-01-29 12:23:13,969 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\__init__.py', reloading
+2026-01-29 12:23:13,969 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\converters.py', reloading
+2026-01-29 12:23:13,974 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\converters.py', reloading
+2026-01-29 12:23:13,974 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\exceptions.py', reloading
+2026-01-29 12:23:13,974 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\exceptions.py', reloading
+2026-01-29 12:23:13,974 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\map.py', reloading
+2026-01-29 12:23:13,974 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\map.py', reloading
+2026-01-29 12:23:13,974 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\matcher.py', reloading
+2026-01-29 12:23:13,977 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\matcher.py', reloading
+2026-01-29 12:23:13,977 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\rules.py', reloading
+2026-01-29 12:23:13,977 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\routing\\rules.py', reloading
+2026-01-29 12:23:13,977 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\http.py', reloading
+2026-01-29 12:23:13,977 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\multipart.py', reloading
+2026-01-29 12:23:13,977 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\request.py', reloading
+2026-01-29 12:23:13,977 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\response.py', reloading
+2026-01-29 12:23:13,977 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\utils.py', reloading
+2026-01-29 12:23:13,977 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\__init__.py', reloading
+2026-01-29 12:23:13,982 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\__init__.py', reloading
+2026-01-29 12:23:13,982 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\http.py', reloading
+2026-01-29 12:23:13,982 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\http.py', reloading
+2026-01-29 12:23:13,982 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\multipart.py', reloading
+2026-01-29 12:23:13,982 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\multipart.py', reloading
+2026-01-29 12:23:13,982 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\request.py', reloading
+2026-01-29 12:23:13,982 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\request.py', reloading
+2026-01-29 12:23:13,982 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\response.py', reloading
+2026-01-29 12:23:13,982 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\response.py', reloading
+2026-01-29 12:23:13,982 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\utils.py', reloading
+2026-01-29 12:23:13,987 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\sansio\\utils.py', reloading
+2026-01-29 12:23:13,987 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\wrappers\\request.py', reloading
+2026-01-29 12:23:13,988 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\wrappers\\response.py', reloading
+2026-01-29 12:23:13,988 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\wrappers\\__init__.py', reloading
+2026-01-29 12:23:13,988 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\wrappers\\__init__.py', reloading
+2026-01-29 12:23:13,988 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\wrappers\\__init__.py', reloading
+2026-01-29 12:23:13,988 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\wrappers\\request.py', reloading
+2026-01-29 12:23:13,990 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\wrappers\\request.py', reloading
+2026-01-29 12:23:13,990 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\wrappers\\response.py', reloading
+2026-01-29 12:23:13,990 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\werkzeug\\wrappers\\response.py', reloading
+2026-01-29 12:23:16,710 - __main__ - INFO - Enhanced modules loaded successfully
+2026-01-29 12:23:24,189 - __main__ - INFO - Recommendation engine loaded successfully
+2026-01-29 12:23:24,195 - __main__ - INFO - Application initialized successfully
+2026-01-29 12:23:24,209 - werkzeug - WARNING -  * Debugger is active!
+2026-01-29 12:23:24,218 - werkzeug - INFO -  * Debugger PIN: 234-244-881
+2026-01-29 12:23:24,259 - werkzeug - INFO -  * Detected change in 'C:\\Users\\malai\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\~-mpy\\f2py\\tests\\test_kind.py', reloading
+2026-01-29 12:23:26,269 - __main__ - INFO - Enhanced modules loaded successfully
+2026-01-29 12:23:33,843 - __main__ - INFO - Recommendation engine loaded successfully
+2026-01-29 12:23:33,843 - __main__ - INFO - Application initialized successfully
+2026-01-29 12:23:33,859 - werkzeug - WARNING -  * Debugger is active!
+2026-01-29 12:23:33,868 - werkzeug - INFO -  * Debugger PIN: 234-244-881
+2026-01-29 12:24:59,450 - werkzeug - INFO - 127.0.0.1 - - [29/Jan/2026 12:24:59] "GET / HTTP/1.1" 200 -
+2026-01-29 12:24:59,612 - werkzeug - INFO - 127.0.0.1 - - [29/Jan/2026 12:24:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-01-29 12:25:18,618 - __main__ - INFO - Enhanced modules loaded successfully
+2026-01-29 12:25:25,839 - __main__ - INFO - Recommendation engine loaded successfully
+2026-01-29 12:25:25,839 - __main__ - INFO - Application initialized successfully
+2026-01-29 12:25:25,940 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2026-01-29 12:25:25,940 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-01-29 12:25:25,977 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-01-29 12:25:27,008 - __main__ - INFO - Enhanced modules loaded successfully
+2026-01-29 12:25:33,908 - __main__ - INFO - Recommendation engine loaded successfully
+2026-01-29 12:25:33,908 - __main__ - INFO - Application initialized successfully
+2026-01-29 12:25:33,924 - werkzeug - WARNING -  * Debugger is active!
+2026-01-29 12:25:33,933 - werkzeug - INFO -  * Debugger PIN: 234-244-881
+2026-01-29 12:25:46,900 - werkzeug - INFO - 127.0.0.1 - - [29/Jan/2026 12:25:46] "GET / HTTP/1.1" 200 -
+2026-01-29 12:25:47,071 - werkzeug - INFO - 127.0.0.1 - - [29/Jan/2026 12:25:47] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-01-29 12:29:06,389 - werkzeug - INFO - 127.0.0.1 - - [29/Jan/2026 12:29:06] "POST /analyze HTTP/1.1" 200 -
+2026-01-29 12:29:06,422 - werkzeug - INFO - 127.0.0.1 - - [29/Jan/2026 12:29:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2026-01-29 12:32:18,154 - werkzeug - INFO - 127.0.0.1 - - [29/Jan/2026 12:32:18] "POST /analyze HTTP/1.1" 200 -
+2026-01-29 12:32:18,224 - werkzeug - INFO - 127.0.0.1 - - [29/Jan/2026 12:32:18] "GET /static/css/style.css HTTP/1.1" 200 -

@@ -1,7 +1,8 @@
-// Shopper's Verdict Browser Extension - Popup Script
+// Shopper's Verdict Browser Extension - Popup Script (v2.0)
 
 const API_BASE_URL = 'http://localhost:5000';
 const SUPPORTED_SITES = ['amazon.in', 'amazon.com', 'flipkart.com'];
+const API_TIMEOUT = 30000; // 30 seconds
 
 // DOM Elements
 const loadingEl = document.getElementById('loading');
@@ -70,20 +71,20 @@ async function analyzeProduct(productUrl) {
     try {
         showLoading();
 
-        // First try health check
-        const healthResponse = await fetch(`${API_BASE_URL}/api/extension/health`, {
+        // First try health check with timeout
+        const healthResponse = await fetchWithTimeout(`${API_BASE_URL}/api/extension/health`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             }
-        });
+        }, API_TIMEOUT);
 
         if (!healthResponse.ok) {
-            throw new Error('Server not available');
+            throw new Error('Server not available. Make sure the Flask app is running on http://localhost:5000');
         }
 
         // Perform analysis
-        const response = await fetch(`${API_BASE_URL}/api/extension/analyze`, {
+        const response = await fetchWithTimeout(`${API_BASE_URL}/api/extension/analyze`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -92,7 +93,7 @@ async function analyzeProduct(productUrl) {
                 url: productUrl,
                 include_recommendations: true
             })
-        });
+        }, API_TIMEOUT);
 
         const data = await response.json();
 
@@ -102,40 +103,87 @@ async function analyzeProduct(productUrl) {
 
         if (data.ok) {
             showResults(data);
+            
+            // Save to history
+            chrome.runtime.sendMessage({
+                action: 'saveToHistory',
+                data: {
+                    url: productUrl,
+                    score: data.score,
+                    title: data.title || 'Unknown Product'
+                }
+            });
         } else {
             throw new Error(data.error || 'Unknown error occurred');
         }
 
     } catch (error) {
         console.error('Analysis error:', error);
-        
-        // Try fallback with test endpoint
-        try {
-            const testResponse = await fetch(`${API_BASE_URL}/api/extension/test`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            });
-            
-            if (testResponse.ok) {
-                const testData = await testResponse.json();
-                if (testData.ok) {
-                    showResults(testData, true); // Mark as demo data
-                    return;
-                }
-            }
-        } catch (testError) {
-            console.error('Test endpoint also failed:', testError);
-        }
-
-        showError(error.message || 'Analysis failed. Please try again.');
+        showError(getErrorMessage(error));
     }
+}
+
+function fetchWithTimeout(url, options = {}, timeout = API_TIMEOUT) {
+    return Promise.race([
+        fetch(url, options),
+        new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('Request timeout')), timeout)
+        )
+    ]);
+}
+
+function getErrorMessage(error) {
+    const errorMessage = error.message || 'Analysis failed';
+    
+    if (errorMessage.includes('Server not available')) {
+        return '⚠️ Server Not Running\n\nPlease start the Flask application:\npython app.py';
+    } else if (errorMessage.includes('timeout')) {
+        return '⏱️ Request Timeout\n\nThe server is taking too long to respond. Please try again.';
+    } else if (errorMessage.includes('Failed to fetch')) {
+        return '🔌 Connection Error\n\nCannot connect to the server. Check if the Flask app is running.';
+    }
+    return `❌ ${errorMessage}`;
 }
 
 function showLoading() {
     hideAllSections();
     loadingEl.style.display = 'block';
+}
+
+function showError(message) {
+    hideAllSections();
+    errorEl.style.display = 'block';
+    const errorMessage = document.getElementById('errorMessage');
+    errorMessage.textContent = message;
+    
+    // Show notification
+    showNotification(message, 'error');
+}
+
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background: ${type === 'error' ? '#ef4444' : type === 'success' ? '#10b981' : '#3b82f6'};
+        color: white;
+        padding: 12px 16px;
+        border-radius: 6px;
+        z-index: 1000;
+        max-width: 300px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto remove after 4 seconds
+    setTimeout(() => {
+        notification.remove();
+    }, 4000);
 }
 
 function showResults(data, isDemoData = false) {
@@ -280,6 +328,175 @@ function showNotProductPage() {
     hideAllSections();
     notProductPageEl.style.display = 'block';
 }
+
+// Tab switching functionality
+function switchTab(tabName) {
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.style.display = 'none';
+    });
+    
+    // Update button states
+    document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Show selected tab
+    if (tabName === 'analysis') {
+        document.getElementById('loading').style.display = 'block';
+        document.getElementById('loading').classList.add('active');
+        document.querySelectorAll('.tab-button')[0].classList.add('active');
+        loadAnalysisTab();
+    } else if (tabName === 'history') {
+        document.getElementById('history-tab').style.display = 'block';
+        document.getElementById('history-tab').classList.add('active');
+        document.querySelectorAll('.tab-button')[1].classList.add('active');
+        loadHistory();
+    } else if (tabName === 'bookmarks') {
+        document.getElementById('bookmarks-tab').style.display = 'block';
+        document.getElementById('bookmarks-tab').classList.add('active');
+        document.querySelectorAll('.tab-button')[2].classList.add('active');
+        loadBookmarks();
+    }
+}
+
+function loadAnalysisTab() {
+    // Re-run analysis for current product
+    const [tab] = chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+        if (tabs[0]) {
+            analyzeProduct(tabs[0].url);
+        }
+    });
+}
+
+function loadHistory() {
+    chrome.runtime.sendMessage({action: 'getHistory'}, (history) => {
+        const historyList = document.getElementById('historyList');
+        const emptyHistory = document.getElementById('emptyHistory');
+        
+        historyList.innerHTML = '';
+        
+        if (history && history.length > 0) {
+            emptyHistory.style.display = 'none';
+            history.forEach(item => {
+                const historyItemEl = document.createElement('div');
+                historyItemEl.className = 'history-item';
+                const date = new Date(item.timestamp).toLocaleDateString();
+                historyItemEl.innerHTML = `
+                    <div class="history-item-title">${item.title}</div>
+                    <div class="history-item-meta">
+                        <span>${date}</span>
+                        <span class="history-item-score">${item.score}/100</span>
+                    </div>
+                `;
+                historyItemEl.style.cursor = 'pointer';
+                historyItemEl.addEventListener('click', () => {
+                    chrome.runtime.sendMessage({
+                        action: 'openFullReport',
+                        url: `/results?url=${encodeURIComponent(item.url)}`
+                    });
+                });
+                historyList.appendChild(historyItemEl);
+            });
+        } else {
+            emptyHistory.style.display = 'block';
+        }
+    });
+}
+
+function loadBookmarks() {
+    chrome.runtime.sendMessage({action: 'getBookmarks'}, (bookmarks) => {
+        const bookmarksList = document.getElementById('bookmarksList');
+        const emptyBookmarks = document.getElementById('emptyBookmarks');
+        
+        bookmarksList.innerHTML = '';
+        
+        if (bookmarks && bookmarks.length > 0) {
+            emptyBookmarks.style.display = 'none';
+            bookmarks.forEach(item => {
+                const bookmarkItemEl = document.createElement('div');
+                bookmarkItemEl.className = 'bookmark-item';
+                const date = new Date(item.bookmarkedAt).toLocaleDateString();
+                bookmarkItemEl.innerHTML = `
+                    <div class="bookmark-item-title">${item.title}</div>
+                    <div class="bookmark-item-meta">
+                        <span>⭐ Score: ${item.score || '--'}/100</span>
+                        <span style="float: right; cursor: pointer;" onclick="removeBookmarkItem('${item.url}')">✕</span>
+                    </div>
+                `;
+                bookmarkItemEl.style.cursor = 'pointer';
+                bookmarkItemEl.addEventListener('click', (e) => {
+                    if (e.target.textContent !== '✕') {
+                        chrome.runtime.sendMessage({
+                            action: 'openFullReport',
+                            url: `/results?url=${encodeURIComponent(item.url)}`
+                        });
+                    }
+                });
+                bookmarksList.appendChild(bookmarkItemEl);
+            });
+        } else {
+            emptyBookmarks.style.display = 'block';
+        }
+    });
+}
+
+function removeBookmarkItem(url) {
+    chrome.runtime.sendMessage({
+        action: 'removeBookmark',
+        url: url
+    }, () => {
+        loadBookmarks();
+    });
+}
+
+// Bookmark button functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const bookmarkBtn = document.getElementById('bookmarkBtn');
+    if (bookmarkBtn) {
+        bookmarkBtn.addEventListener('click', () => {
+            const scoreValue = document.getElementById('scoreValue').textContent;
+            const [tab] = chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+                if (tabs[0]) {
+                    chrome.runtime.sendMessage({
+                        action: 'bookmarkProduct',
+                        data: {
+                            url: tabs[0].url,
+                            title: document.querySelector('.score-card').textContent || 'Product',
+                            score: parseInt(scoreValue) || 0
+                        }
+                    }, (response) => {
+                        showNotification(response.message, 'success');
+                    });
+                }
+            });
+        });
+    }
+    
+    // Clear history button
+    const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+    if (clearHistoryBtn) {
+        clearHistoryBtn.addEventListener('click', () => {
+            if (confirm('Clear all analysis history?')) {
+                chrome.storage.local.set({analysisHistory: []}, () => {
+                    loadHistory();
+                });
+            }
+        });
+    }
+    
+    // Clear bookmarks button
+    const clearBookmarksBtn = document.getElementById('clearBookmarksBtn');
+    if (clearBookmarksBtn) {
+        clearBookmarksBtn.addEventListener('click', () => {
+            if (confirm('Clear all bookmarks?')) {
+                chrome.storage.local.set({bookmarkedProducts: []}, () => {
+                    loadBookmarks();
+                });
+            }
+        });
+    }
+});
 
 function showDemoDataWarning() {
     const warning = document.createElement('div');

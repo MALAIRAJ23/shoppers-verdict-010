@@ -192,6 +192,126 @@ class RecommendationEngine:
         except Exception as e:
             print(f"Error storing product: {e}")
     
+    def generate_recommendation_explanation(self, product: Dict, competitor: Dict, 
+                                           similarity_score: float) -> Dict:
+        """Generate human-readable explanation for why product is recommended."""
+        explanation = {
+            'recommendation': '',
+            'reasons': [],
+            'score_difference': competitor.get('score', 0) - product.get('score', 0),
+            'similarity': f"{similarity_score * 100:.0f}% similar",
+            'key_differences': []
+        }
+        
+        # Score comparison
+        if competitor.get('score', 0) > product.get('score', 0):
+            score_diff = competitor.get('score', 0) - product.get('score', 0)
+            explanation['reasons'].append(
+                f"Higher worth score by {score_diff} points ({competitor.get('score', 0)}/100 vs {product.get('score', 0)}/100)"
+            )
+        
+        # Category match
+        if product.get('category') == competitor.get('category'):
+            explanation['reasons'].append("Same product category - direct comparison")
+        
+        # Pros analysis
+        product_pros = set(json.loads(product.get('pros', '[]')) if isinstance(product.get('pros'), str) else product.get('pros', []))
+        competitor_pros = set(json.loads(competitor.get('pros', '[]')) if isinstance(competitor.get('pros'), str) else competitor.get('pros', []))
+        
+        additional_pros = competitor_pros - product_pros
+        if additional_pros:
+            explanation['key_differences'].append({
+                'type': 'additional_pros',
+                'items': list(additional_pros)[:3],
+                'description': f"Customers praise {', '.join(list(additional_pros)[:2])} that aren't mentioned for the original product"
+            })
+        
+        # Cons analysis
+        product_cons = set(json.loads(product.get('cons', '[]')) if isinstance(product.get('cons'), str) else product.get('cons', []))
+        competitor_cons = set(json.loads(competitor.get('cons', '[]')) if isinstance(competitor.get('cons'), str) else competitor.get('cons', []))
+        
+        fewer_cons = product_cons - competitor_cons
+        if fewer_cons:
+            explanation['key_differences'].append({
+                'type': 'fewer_cons',
+                'items': list(fewer_cons)[:3],
+                'description': f"Avoids issues like {', '.join(list(fewer_cons)[:2])} found in the original product"
+            })
+        
+        # Price comparison
+        if competitor.get('price') and product.get('price'):
+            try:
+                price_ratio = float(competitor.get('price', 0)) / float(product.get('price', 1))
+                if price_ratio < 0.95:
+                    explanation['reasons'].append(f"Better price ({price_ratio*100:.0f}% of original)")
+                elif price_ratio > 1.05:
+                    explanation['reasons'].append(f"Premium option ({price_ratio*100:.0f}% of original price)")
+            except:
+                pass
+        
+        # Generate summary
+        if explanation['reasons']:
+            explanation['recommendation'] = ' • '.join(explanation['reasons'][:2])
+        else:
+            explanation['recommendation'] = f"Similar product with {similarity_score*100:.0f}% matching features"
+        
+        return explanation
+    
+    def get_collaborative_recommendations(self, product_url: str) -> List[Dict]:
+        """Get recommendations using collaborative filtering based on user patterns."""
+        try:
+            with sqlite3.connect(RECOMMENDATIONS_DB) as conn:
+                cursor = conn.cursor()
+                
+                # Get current product
+                cursor.execute('SELECT * FROM products WHERE url = ?', (product_url,))
+                current = cursor.fetchone()
+                
+                if not current:
+                    return []
+                
+                # Find products with similar categories and higher scores
+                cursor.execute('''
+                    SELECT * FROM products 
+                    WHERE category = ? AND score > ? AND url != ?
+                    ORDER BY score DESC
+                    LIMIT 10
+                ''', (current[7], current[5], product_url))  # category, score, url
+                
+                recommendations = []
+                for rec in cursor.fetchall():
+                    similarity = 0.8  # Placeholder for actual similarity calculation
+                    explanation = self.generate_recommendation_explanation(
+                        {
+                            'score': current[5],
+                            'category': current[7],
+                            'pros': current[6],
+                            'cons': current[7],
+                            'price': current[4]
+                        },
+                        {
+                            'score': rec[5],
+                            'category': rec[7],
+                            'pros': rec[6],
+                            'cons': rec[7],
+                            'price': rec[4]
+                        },
+                        similarity
+                    )
+                    
+                    recommendations.append({
+                        'url': rec[1],
+                        'title': rec[2],
+                        'score': rec[5],
+                        'price': rec[4],
+                        'explanation': explanation
+                    })
+                
+                return recommendations
+        except Exception as e:
+            print(f"Error getting collaborative recommendations: {e}")
+            return []
+    
     def create_text_embedding(self, text: str) -> np.ndarray:
         """Create embedding for text using TF-IDF + SVD."""
         try:

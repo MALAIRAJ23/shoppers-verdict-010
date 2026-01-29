@@ -1,13 +1,30 @@
 // Background service worker for Shopper's Verdict extension
 
+const STORAGE_KEYS = {
+    ENABLED: 'extensionEnabled',
+    API_BASE_URL: 'apiBaseUrl',
+    ANALYSIS_HISTORY: 'analysisHistory',
+    BOOKMARKS: 'bookmarkedProducts',
+    SETTINGS: 'userSettings'
+};
+
+const MAX_HISTORY_ITEMS = 50;
+
 chrome.runtime.onInstalled.addListener(() => {
-    console.log('Shopper\'s Verdict extension installed');
+    console.log('Shopper\'s Verdict extension installed (v2.0)');
     
-    // Set up initial storage with error handling
+    // Initialize storage with defaults
     try {
         chrome.storage.local.set({
-            extensionEnabled: true,
-            apiBaseUrl: 'http://localhost:5000'
+            [STORAGE_KEYS.ENABLED]: true,
+            [STORAGE_KEYS.API_BASE_URL]: 'http://localhost:5000',
+            [STORAGE_KEYS.ANALYSIS_HISTORY]: [],
+            [STORAGE_KEYS.BOOKMARKS]: [],
+            [STORAGE_KEYS.SETTINGS]: {
+                notificationsEnabled: true,
+                autoAnalyze: false,
+                historyEnabled: true
+            }
         });
     } catch (storageError) {
         console.warn('Initial storage setup failed:', storageError);
@@ -33,7 +50,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                 // Update badge to indicate product page detected
                 chrome.action.setBadgeText({
                     tabId: tabId,
-                    text: '!'
+                    text: '✓'
                 }).catch(err => console.warn('Badge text error:', err));
                 
                 chrome.action.setBadgeBackgroundColor({
@@ -43,7 +60,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                 
                 chrome.action.setTitle({
                     tabId: tabId,
-                    title: 'Shopper\'s Verdict - Click to analyze this product'
+                    title: 'Shopper\'s Verdict - Click to analyze (Alt+Shift+V)'
                 }).catch(err => console.warn('Title error:', err));
             } else {
                 // Clear badge for non-product pages
@@ -63,15 +80,48 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     }
 });
 
+// Handle keyboard command
+chrome.commands.onCommand.addListener((command) => {
+    if (command === 'analyze-product') {
+        chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+            if (tabs[0]) {
+                // Open popup or send message to trigger analysis
+                chrome.tabs.sendMessage(tabs[0].id, {action: 'triggerAnalysis'}).catch(() => {
+                    // If content script not loaded, open popup
+                    chrome.action.openPopup();
+                });
+            }
+        });
+    }
+});
+
 // Handle extension icon click
 chrome.action.onClicked.addListener((tab) => {
-    // This will trigger the popup to open
-    // No additional action needed as popup is defined in manifest
+    // Popup will open automatically when manifest defines it
 });
 
 // Handle messages from content scripts and popup
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.action === 'analyzeProduct') {
+    if (request.action === 'saveToHistory') {
+        saveAnalysisToHistory(request.data, sendResponse);
+        return true;
+    } else if (request.action === 'getHistory') {
+        chrome.storage.local.get([STORAGE_KEYS.ANALYSIS_HISTORY], (result) => {
+            sendResponse(result[STORAGE_KEYS.ANALYSIS_HISTORY] || []);
+        });
+        return true;
+    } else if (request.action === 'bookmarkProduct') {
+        bookmarkProduct(request.data, sendResponse);
+        return true;
+    } else if (request.action === 'removeBookmark') {
+        removeBookmark(request.url, sendResponse);
+        return true;
+    } else if (request.action === 'getBookmarks') {
+        chrome.storage.local.get([STORAGE_KEYS.BOOKMARKS], (result) => {
+            sendResponse(result[STORAGE_KEYS.BOOKMARKS] || []);
+        });
+        return true;
+    } else if (request.action === 'analyzeProduct') {
         // Forward to content script
         chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
             if (tabs[0]) {
@@ -85,17 +135,91 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         });
         sendResponse({success: true});
     } else if (request.action === 'getSettings') {
-        chrome.storage.local.get(['extensionEnabled', 'apiBaseUrl'], (result) => {
+        chrome.storage.local.get(Object.values(STORAGE_KEYS), (result) => {
             sendResponse(result);
         });
-        return true; // Keep message channel open for async response
+        return true;
     } else if (request.action === 'updateSettings') {
         chrome.storage.local.set(request.settings, () => {
             sendResponse({success: true});
         });
         return true;
+    } else if (request.action === 'showNotification') {
+        chrome.storage.local.get([STORAGE_KEYS.SETTINGS], (result) => {
+            const settings = result[STORAGE_KEYS.SETTINGS] || {};
+            if (settings.notificationsEnabled) {
+                // Send message to content script to show notification
+                chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+                    if (tabs[0]) {
+                        chrome.tabs.sendMessage(tabs[0].id, {
+                            action: 'showNotification',
+                            message: request.message,
+                            type: request.type
+                        });
+                    }
+                });
+            }
+        });
+        sendResponse({success: true});
     }
 });
+
+// Helper functions
+function saveAnalysisToHistory(analysisData, callback) {
+    chrome.storage.local.get([STORAGE_KEYS.ANALYSIS_HISTORY], (result) => {
+        let history = result[STORAGE_KEYS.ANALYSIS_HISTORY] || [];
+        
+        // Add new analysis
+        const newAnalysis = {
+            ...analysisData,
+            timestamp: Date.now(),
+            id: `analysis_${Date.now()}`
+        };
+        
+        history.unshift(newAnalysis);
+        
+        // Keep only recent items
+        if (history.length > MAX_HISTORY_ITEMS) {
+            history = history.slice(0, MAX_HISTORY_ITEMS);
+        }
+        
+        chrome.storage.local.set({[STORAGE_KEYS.ANALYSIS_HISTORY]: history}, () => {
+            callback({success: true, id: newAnalysis.id});
+        });
+    });
+}
+
+function bookmarkProduct(productData, callback) {
+    chrome.storage.local.get([STORAGE_KEYS.BOOKMARKS], (result) => {
+        let bookmarks = result[STORAGE_KEYS.BOOKMARKS] || [];
+        
+        // Check if already bookmarked
+        const exists = bookmarks.some(b => b.url === productData.url);
+        if (!exists) {
+            bookmarks.unshift({
+                ...productData,
+                bookmarkedAt: Date.now()
+            });
+            
+            chrome.storage.local.set({[STORAGE_KEYS.BOOKMARKS]: bookmarks}, () => {
+                callback({success: true, message: 'Product bookmarked'});
+            });
+        } else {
+            callback({success: false, message: 'Already bookmarked'});
+        }
+    });
+}
+
+function removeBookmark(url, callback) {
+    chrome.storage.local.get([STORAGE_KEYS.BOOKMARKS], (result) => {
+        let bookmarks = result[STORAGE_KEYS.BOOKMARKS] || [];
+        bookmarks = bookmarks.filter(b => b.url !== url);
+        
+        chrome.storage.local.set({[STORAGE_KEYS.BOOKMARKS]: bookmarks}, () => {
+            callback({success: true, message: 'Bookmark removed'});
+        });
+    });
+}
 
 // Handle context menu (optional enhancement)
 chrome.runtime.onInstalled.addListener(() => {

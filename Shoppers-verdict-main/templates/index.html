@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered shopping assistant that analyzes product reviews and provides worth-to-buy scores">
     <title>Shopper's Verdict - AI-Powered Shopping Assistant</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,20 +11,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Accessibility skip link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Header -->
-    <header class="header">
+    <header class="header" role="banner">
         <div class="header-content">
-            <a href="/" class="logo">
-                <div class="logo-icon">🛒</div>
+            <a href="/" class="logo" aria-label="Shopper's Verdict - Home">
+                <div class="logo-icon" aria-hidden="true">🛒</div>
                 Shopper's Verdict
             </a>
-            <nav>
+            <nav aria-label="Main navigation">
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" aria-label="Welcome section">
         <div class="container">
             <h1 class="fade-in-up">Make Smarter Shopping Decisions</h1>
             <p class="fade-in-up">AI-powered analysis of product reviews to help you find the perfect purchase. Get instant worth-to-buy scores, pros & cons, and smart recommendations.</p>
@@ -31,18 +35,18 @@
     </section>
 
     <!-- Main Content -->
-    <main class="container">
+    <main class="container" id="main-content" role="main">
         <!-- Analysis Form -->
         <div class="card fade-in-up">
             <div class="card-header">
-                <div class="card-icon">🔍</div>
+                <div class="card-icon" aria-hidden="true">🔍</div>
                 <div>
                     <h2 class="card-title">Analyze Any Product</h2>
                     <p style="color: var(--text-secondary); margin: 0;">Paste any Amazon or Flipkart product URL to get instant AI analysis</p>
                 </div>
             </div>
 
-            <form method="POST" action="/analyze" id="analysisForm">
+            <form method="POST" action="/analyze" id="analysisForm" aria-labelledby="form-title">
                 <div class="form-group">
                     <label for="product_url" class="form-label">Product URL</label>
                     <input 
@@ -51,23 +55,27 @@
                         name="product_url" 
                         class="form-input" 
                         placeholder="https://www.amazon.in/product-name/dp/XXXXXXXXXX or https://www.flipkart.com/product-name/p/XXXXXXXXXX"
+                        aria-describedby="url-help"
                         required
                     >
+                    <small id="url-help" style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
+                        Supported sites: Amazon.in, Amazon.com, Flipkart.com
+                    </small>
                 </div>
                 
-                <button type="submit" class="btn btn-primary btn-large btn-full" id="analyzeBtn">
+                <button type="submit" class="btn btn-primary btn-large btn-full" id="analyzeBtn" aria-busy="false">
                     <span class="btn-text">🚀 Get AI Verdict</span>
-                    <div class="loading" style="display: none;">
-                        <div class="spinner"></div>
+                    <div class="loading" style="display: none;" aria-live="polite">
+                        <div class="spinner" aria-hidden="true"></div>
                         Analyzing...
                     </div>
                 </button>
             </form>
 
             <!-- Progress Indicator -->
-            <div class="progress-container" id="progressContainer" style="display: none;">
+            <div class="progress-container" id="progressContainer" style="display: none;" role="region" aria-live="polite" aria-label="Analysis progress">
                 <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
+                    <div class="progress-fill" id="progressFill" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <p style="text-align: center; margin-top: 0.5rem; color: var(--text-secondary);" id="progressText">
                     Initializing analysis...

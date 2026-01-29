@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detailed product analysis with AI-powered review analysis">
     <title>Analysis Results - {{ product_title }} | Shopper's Verdict</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,46 +17,82 @@
             top: 0;
             left: 0;
             z-index: -1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
         body {
             position: relative;
+            background: white;
+        }
+        
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--border-color);
+            background: white;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .filter-btn:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .hidden-aspect {
+            display: none;
         }
     </style>
 </head>
 <body>
+    <!-- Accessibility skip link -->
+    <a href="#main-results" class="skip-link">Skip to results</a>
+    
     <!-- Particles Background -->
     <div id="particles-js"></div>
     <!-- Header -->
-    <header class="header">
+    <header class="header" role="banner">
         <div class="header-content">
-            <a href="/" class="logo">
-                <div class="logo-icon">🛒</div>
+            <a href="/" class="logo" aria-label="Shopper's Verdict - Home">
+                <div class="logo-icon" aria-hidden="true">🛒</div>
                 Shopper's Verdict
             </a>
-            <nav>
+            <nav aria-label="Main navigation">
                 <a href="/" class="btn btn-secondary">New Analysis</a>
             </nav>
         </div>
     </header>
 
-    <main class="container">
+    <main class="container" id="main-results" role="main">
         <!-- Product Info -->
         <div class="card fade-in-up">
             <div class="card-header">
-                <div class="card-icon">📦</div>
+                <div class="card-icon" aria-hidden="true">📦</div>
                 <div>
                     <h1 class="card-title">{{ product_title or 'Product Analysis' }}</h1>
                     <p style="color: var(--text-secondary); margin: 0;">
-                        <a href="{{ product_url }}" target="_blank" style="color: var(--primary-color); text-decoration: none;">
-                            View Original Product →
+                        <a href="{{ product_url }}" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color); text-decoration: none;">
+                            View Original Product → <span aria-label="opens in new window">(new window)</span>
                         </a>
                     </p>
                 </div>
             </div>
             
             {% if is_sample_data %}
-            <div class="alert alert-info">
+            <div class="alert alert-info" role="status" aria-live="polite">
                 <strong>Demo Analysis:</strong> This is a sample analysis to demonstrate our AI capabilities. 
                 Real product analysis will show actual scraped reviews and data.
             </div>
@@ -65,14 +102,14 @@
         <!-- Main Score -->
         <div class="card fade-in-up">
             <div class="score-container">
-                <div class="score-circle" id="scoreCircle">
+                <div class="score-circle" id="scoreCircle" role="img" aria-label="Product worth score: {{ score }} out of 100">
                     <div class="score-inner">
                         <div class="score-value" id="scoreValue">{{ score }}</div>
                         <div class="score-label">Worth Score</div>
                     </div>
                 </div>
                 
-                <div class="recommendation {{ 'recommended' if score >= 70 else 'acceptable' if score >= 50 else 'not-recommended' }}">
+                <div class="recommendation {{ 'recommended' if score >= 70 else 'acceptable' if score >= 50 else 'not-recommended' }}" role="status" aria-live="polite">
                     {% if score >= 70 %}
                         ✅ Highly Recommended
                     {% elif score >= 50 %}
@@ -91,14 +128,14 @@
         <!-- Pros and Cons -->
         <div class="card fade-in-up">
             <div class="card-header">
-                <div class="card-icon">⚖️</div>
+                <div class="card-icon" aria-hidden="true">⚖️</div>
                 <h2 class="card-title">Pros & Cons Analysis</h2>
             </div>
             
             <div class="pros-cons">
-                <div class="pros slide-in">
+                <div class="pros slide-in" role="region" aria-label="Positive customer feedback">
                     <h3>
-                        <span>✅</span>
+                        <span aria-hidden="true">✅</span>
                         What Customers Love
                     </h3>
                     <ul>
@@ -114,9 +151,9 @@
                     </ul>
                 </div>
                 
-                <div class="cons slide-in">
+                <div class="cons slide-in" role="region" aria-label="Customer concerns">
                     <h3>
-                        <span>❌</span>
+                        <span aria-hidden="true">❌</span>
                         Common Concerns
                     </h3>
                     <ul>
@@ -134,20 +171,38 @@
             </div>
         </div>
 
-        <!-- Detailed Aspect Analysis -->
+        <!-- Detailed Aspect Analysis with Filter -->
         {% if aspect_data %}
         <div class="card fade-in-up">
             <div class="card-header">
-                <div class="card-icon">📊</div>
+                <div class="card-icon" aria-hidden="true">📊</div>
                 <h2 class="card-title">Detailed Aspect Analysis</h2>
             </div>
             
-            <div class="aspects">
+            <!-- Filter Controls -->
+            <div class="filter-controls" role="group" aria-label="Aspect filtering options">
+                <button class="filter-btn active" onclick="filterAspects('all')" aria-pressed="true">
+                    All Aspects
+                </button>
+                <button class="filter-btn" onclick="filterAspects('positive')" aria-pressed="false">
+                    👍 Positive
+                </button>
+                <button class="filter-btn" onclick="filterAspects('negative')" aria-pressed="false">
+                    👎 Negative
+                </button>
+            </div>
+            
+            <div class="aspects" role="region" aria-label="Product aspect sentiment analysis">
                 {% for aspect in aspect_data %}
-                <div class="aspect-item slide-in">
+                <div class="aspect-item slide-in aspect-filter-{{ 'positive' if aspect.sentiment > 0 else 'negative' }}">
                     <div class="aspect-name">{{ aspect.name.title() }}</div>
                     <div class="aspect-bar">
                         <div class="aspect-fill {{ 'positive' if aspect.sentiment > 0 else 'negative' }}" 
+                             role="progressbar"
+                             aria-valuenow="{{ aspect.width }}"
+                             aria-valuemin="0"
+                             aria-valuemax="100"
+                             aria-label="{{ aspect.name }} sentiment: {{ '%.1f'|format(aspect.sentiment * 100) }}%"
                              style="width: {{ aspect.width }}%"></div>
                     </div>
                     <div class="aspect-score">
@@ -161,11 +216,11 @@
 
         <!-- Voice Verdict -->
         <div class="voice-verdict fade-in-up">
-            <h3>🔊 AI Voice Verdict</h3>
+            <h3 aria-hidden="true">🔊 AI Voice Verdict</h3>
             <p style="margin-bottom: 1rem; opacity: 0.9;">{{ voice_verdict }}</p>
             <div class="voice-controls">
-                <button class="play-btn" onclick="playVoiceVerdict()" id="playButton">
-                    <span id="playIcon">▶️</span>
+                <button class="play-btn" onclick="playVoiceVerdict()" id="playButton" aria-label="Play AI voice summary">
+                    <span id="playIcon" aria-hidden="true">▶️</span>
                 </button>
                 <span style="opacity: 0.8;">Click to hear AI summary</span>
             </div>
@@ -175,19 +230,19 @@
         {% if recommendations %}
         <div class="card fade-in-up">
             <div class="card-header">
-                <div class="card-icon">🎯</div>
+                <div class="card-icon" aria-hidden="true">🎯</div>
                 <h2 class="card-title">Better Alternatives</h2>
             </div>
             
-            <div class="recommendation-grid">
+            <div class="recommendation-grid" role="region" aria-label="Alternative product recommendations">
                 {% for rec in recommendations %}
                 <div class="recommendation-card">
-                    <div class="recommendation-score">{{ rec.score }}/100</div>
+                    <div class="recommendation-score" aria-label="Score">{{ rec.score }}/100</div>
                     <h4 style="margin: 0 0 0.5rem 0;">{{ rec.title }}</h4>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
                         {{ rec.description[:100] }}...
                     </p>
-                    <a href="{{ rec.url }}" target="_blank" class="btn btn-primary" style="font-size: 0.875rem;">
+                    <a href="{{ rec.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 0.875rem;">
                         View Product →
                     </a>
                 </div>
@@ -365,6 +420,39 @@
                 });
             }, 500);
         });
+
+        // Filter functionality
+        function filterAspects(filterType) {
+            const aspects = document.querySelectorAll('.aspect-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update button states
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-pressed', 'false');
+            });
+            event.target.classList.add('active');
+            event.target.setAttribute('aria-pressed', 'true');
+            
+            // Filter aspects
+            aspects.forEach(aspect => {
+                if (filterType === 'all') {
+                    aspect.classList.remove('hidden-aspect');
+                } else if (filterType === 'positive') {
+                    if (aspect.classList.contains('aspect-filter-positive')) {
+                        aspect.classList.remove('hidden-aspect');
+                    } else {
+                        aspect.classList.add('hidden-aspect');
+                    }
+                } else if (filterType === 'negative') {
+                    if (aspect.classList.contains('aspect-filter-negative')) {
+                        aspect.classList.remove('hidden-aspect');
+                    } else {
+                        aspect.classList.add('hidden-aspect');
+                    }
+                }
+            });
+        }
 
         // Voice verdict functionality
         let isPlaying = false;
